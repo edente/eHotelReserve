@@ -1,0 +1,220 @@
+package mum.edu.cs.cs544.project.eHotelReserve.model;
+
+import java.io.Serializable;
+import java.time.LocalDate;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+@Entity
+@Table(name = "bookings")
+public class Booking implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Column(name = "booking_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long bookingId;
+	
+	@Column(name = "reference_number")
+	@NotNull
+	private String referenceNumber;
+	
+	@Column(name = "booking_date")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull(message = "*Please provide booking date")
+	private LocalDate bookingDate;
+
+	@Column(name = "start_date")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull(message = "*Please provide booking start date and time")
+	@Future
+    private LocalDate startDate;
+
+	@Column(name = "end_date")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull(message = "*Please provide booking end date and time")
+	@Future
+    private LocalDate endDate;
+	
+	@Column(name = "total_price")
+	private Double totalPrice;
+	
+	@Column(name = "first_name")
+	@NotNull(message = "*Please provide user first name") 
+    private String firstName;
+
+	@Column(name = "last_name")
+	@NotNull(message = "*Please provide user last name") 
+    private String lastName;
+
+	@Column(name = "date_of_birth")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull(message = "*Please provide user date of birth")
+	@Past
+    private LocalDate dateOfBirth;
+
+	@Column(name = "license_number")
+    private Long licenseNumber;
+	
+	@Column(name = "email")
+	@NotNull(message = "*Please provide email address")
+    private String email;
+	
+	@ManyToOne
+	@JoinColumn(name = "vehicle_id", nullable = true)
+	private Vehicle vehicle;
+	
+	@OneToOne
+	@JoinColumn(name="payment_id", nullable = true, unique = true)
+	private Payment payment;
+	
+	@Column(name = "pick_up_location")
+	private String pickUpLocation;
+
+    public Booking() {}
+
+	public Booking(Long bookingId, String referenceNumber, LocalDate bookingDate, LocalDate startDate,
+			LocalDate endDate, Double totalPrice, String firstName, String lastName, LocalDate dateOfBirth,
+			Long licenseNumber, String email, Vehicle vehicle, Payment payment, String pickUpLocation) {
+		this.bookingId = bookingId;
+		this.referenceNumber = referenceNumber;
+		this.bookingDate = bookingDate;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.totalPrice = totalPrice;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+		this.licenseNumber = licenseNumber;
+		this.email = email;
+		this.vehicle = vehicle;
+		this.payment = payment;
+		this.pickUpLocation = pickUpLocation;
+	}
+
+	public Long getBookingId() {
+		return bookingId;
+	}
+
+	public void setBookingId(Long bookingId) {
+		this.bookingId = bookingId;
+	}
+
+	public String getReferenceNumber() {
+		return referenceNumber;
+	}
+
+	public void setReferenceNumber(String referenceNumber) {
+		this.referenceNumber = referenceNumber;
+	}
+
+	public LocalDate getBookingDate() {
+		return bookingDate;
+	}
+
+	public void setBookingDate(LocalDate bookingDate) {
+		this.bookingDate = bookingDate;
+	}
+
+	public LocalDate getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(LocalDate startDate) {
+		this.startDate = startDate;
+	}
+
+	public LocalDate getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(LocalDate endDate) {
+		this.endDate = endDate;
+	}
+
+	public Double getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(Double totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public LocalDate getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(LocalDate dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	public Long getLicenseNumber() {
+		return licenseNumber;
+	}
+
+	public void setLicenseNumber(Long licenseNumber) {
+		this.licenseNumber = licenseNumber;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Vehicle getVehicle() {
+		return vehicle;
+	}
+
+	public void setVehicle(Vehicle vehicle) {
+		this.vehicle = vehicle;
+	}
+
+	public Payment getPayment() {
+		return payment;
+	}
+
+	public void setPayment(Payment payment) {
+		this.payment = payment;
+	}
+
+	public String getPickUpLocation() {
+		return pickUpLocation;
+	}
+
+	public void setPickUpLocation(String pickUpLocation) {
+		this.pickUpLocation = pickUpLocation;
+	}
+
+}
