@@ -13,11 +13,11 @@
 	
 	<groupId>mum.edu.cs.cs425</groupId>
 	
-	<artifactId>eCarRent</artifactId>
+	<artifactId>eHotelManagement</artifactId>
 	
 	<version>0.0.1-SNAPSHOT</version>
 	
-	<name>eCarRent</name>
+	<name>eHotelManagement</name>
 	
 	<description>Project for Software Engineering Course (CS425) @ MUM</description>
 
