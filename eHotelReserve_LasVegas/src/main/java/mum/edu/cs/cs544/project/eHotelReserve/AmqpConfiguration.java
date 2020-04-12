@@ -16,7 +16,7 @@ import org.thymeleaf.spring4.SpringTemplateEngine;
 
 
 @Configuration
-@ComponentScan("mum.edu.cs.cs544.project.ecarrent")
+@ComponentScan("mum.edu.cs.cs544.project.eHotelReserve")
 public class AmqpConfiguration {
 
 	@Bean
@@ -31,7 +31,7 @@ public class AmqpConfiguration {
 	public SimpleMessageListenerContainer directListenerContainer() {
 		SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
 		container.setConnectionFactory(connectionFactory());
-		container.setQueueNames("bookingQueueFairfield");
+		container.setQueueNames("bookingQueueLasVegas");
 		container.setMessageListener(new MessageListenerAdapter(queueListener(), "listen"));
 		return container;
 	}

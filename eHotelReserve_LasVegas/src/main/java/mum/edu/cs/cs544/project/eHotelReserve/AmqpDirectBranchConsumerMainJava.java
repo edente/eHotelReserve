@@ -16,7 +16,7 @@ public class AmqpDirectBranchConsumerMainJava {
 
 	private void mainInternal(ApplicationContext applicationContext) {
 
-		System.out.println("\n-------- Fairfield Branch -> Waiting For Messages From Booking Direct Exchange - Rabbitmq");
+		System.out.println("\n-------- LasVegas Branch -> Waiting For Messages From Booking Direct Exchange - Rabbitmq");
 
 	}
 }
