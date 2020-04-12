@@ -1,0 +1,13 @@
+package edu.miu.cs544.eHotelReserve.servletconfig;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class EHotelReserveApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(EHotelReserveApplication.class, args);
+	}
+
+}
