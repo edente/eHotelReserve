@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import edu.miu.cs544.eHotelReserve.dao.BookingDao;
 import edu.miu.cs544.eHotelReserve.model.Booking;
 import edu.miu.cs544.eHotelReserve.service.BookingService;
-import mum.edu.cs544.eHotelReserve.dao.BookingDao;
 
 @Service
 @Transactional 

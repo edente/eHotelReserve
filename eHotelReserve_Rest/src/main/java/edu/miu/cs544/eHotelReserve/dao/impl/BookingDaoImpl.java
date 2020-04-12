@@ -5,8 +5,8 @@ import java.util.Map;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+import edu.miu.cs544.eHotelReserve.dao.BookingDao;
 import edu.miu.cs544.eHotelReserve.model.Booking;
-import mum.edu.cs544.eHotelReserve.dao.BookingDao;
 
 @SuppressWarnings("unchecked")
 @Repository

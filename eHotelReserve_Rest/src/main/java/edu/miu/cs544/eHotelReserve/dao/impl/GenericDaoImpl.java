@@ -8,7 +8,7 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
-import mum.edu.cs544.eHotelReserve.dao.GenericDao;
+import edu.miu.cs544.eHotelReserve.dao.GenericDao;
 
 @SuppressWarnings("unchecked")
 @Repository

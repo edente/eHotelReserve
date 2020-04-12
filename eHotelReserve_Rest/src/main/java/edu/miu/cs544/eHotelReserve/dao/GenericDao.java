@@ -1,4 +1,4 @@
-package mum.edu.cs544.eHotelReserve.dao;
+package edu.miu.cs544.eHotelReserve.dao;
 
 import java.util.List;
 import java.util.Map;

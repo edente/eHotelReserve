@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import edu.miu.cs544.eHotelReserve.dao.RoomTypeDao;
 import edu.miu.cs544.eHotelReserve.model.RoomType;
 import edu.miu.cs544.eHotelReserve.service.RoomTypeService;
-import mum.edu.cs544.eHotelReserve.dao.RoomTypeDao;
 
 @Service
 @Transactional
