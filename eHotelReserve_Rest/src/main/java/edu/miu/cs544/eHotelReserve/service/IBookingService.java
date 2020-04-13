@@ -6,7 +6,7 @@ import java.util.Set;
 
 import edu.miu.cs544.eHotelReserve.model.Booking;
 
-public interface BookingService {
+public interface IBookingService {
 	
 	Booking getBookingById(Long bookingID);
 

@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Set;
 
 
-public interface GenericDao<T> {
+public interface IGenericDao<T> {
 	/**
      * Method that returns the number of entries from a table that meet some
      * criteria (where clause params)

@@ -8,11 +8,11 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
-import edu.miu.cs544.eHotelReserve.dao.GenericDao;
+import edu.miu.cs544.eHotelReserve.dao.IGenericDao;
 
 @SuppressWarnings("unchecked")
 @Repository
-public abstract class GenericDaoImpl<T> implements GenericDao<T> {
+public abstract class GenericDao<T> implements IGenericDao<T> {
 
 	@PersistenceContext
 	protected EntityManager entityManager;

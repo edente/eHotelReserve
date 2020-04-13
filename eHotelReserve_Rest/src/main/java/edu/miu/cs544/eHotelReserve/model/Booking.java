@@ -1,5 +1,6 @@
 package edu.miu.cs544.eHotelReserve.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,11 +31,11 @@ public class Booking {
 	
 	@NotNull(message = "{NotNull.validation}")
 	@DateTimeFormat(pattern = "MM-dd-yyyy")
-    private Date checkInDate;
+    private LocalDate checkInDate;
 	
 	@NotNull(message = "{NotNull.validation}")
 	@DateTimeFormat(pattern = "MM-dd-yyyy")
-    private Date checkOutDate;
+    private LocalDate checkOutDate;
 	
     private boolean gym;
     private boolean parking;
@@ -43,7 +44,7 @@ public class Booking {
 
     public Booking(){}
 
-    public Booking(User customer, Room room, Date checkInDate, Date checkOutDate, boolean gym,
+    public Booking(User customer, Room room, LocalDate checkInDate, LocalDate checkOutDate, boolean gym,
 			boolean parking) {
 		this.customer = customer;
 		this.room = room;
@@ -78,19 +79,19 @@ public class Booking {
 		this.room = room;
 	}
 
-	public Date getCheckInDate() {
+	public LocalDate getCheckInDate() {
 		return checkInDate;
 	}
 
-	public void setCheckInDate(Date checkInDate) {
+	public void setCheckInDate(LocalDate checkInDate) {
 		this.checkInDate = checkInDate;
 	}
 
-	public Date getCheckOutDate() {
+	public LocalDate getCheckOutDate() {
 		return checkOutDate;
 	}
 
-	public void setCheckOutDate(Date checkOutDate) {
+	public void setCheckOutDate(LocalDate checkOutDate) {
 		this.checkOutDate = checkOutDate;
 	}
 
