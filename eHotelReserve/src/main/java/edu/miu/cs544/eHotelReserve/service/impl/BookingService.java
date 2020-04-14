@@ -17,38 +17,38 @@ import edu.miu.cs544.eHotelReserve.service.IBookingService;
 public class BookingService implements IBookingService{
 	
 
-	private IBookingRepository bookingRepository;
+//	private IBookingRepository bookingRepository;
 
-	@Autowired
-	public BookingService(IBookingRepository bookingRepository) {
-		this.bookingRepository = bookingRepository;
-	}
+//	@Autowired
+//	public BookingService(IBookingRepository bookingRepository) {
+//		this.bookingRepository = bookingRepository;
+//	}
 
 	@Override
 	public List<Booking> findAll() {
-		return bookingRepository.findAll();
+		return null;//bookingRepository.findAll();
 	}
 
 	@Override
 	public Booking save(Booking booking) {
-		return bookingRepository.save(booking);
+		return null;//bookingRepository.save(booking);
 	}
 
 	@Override
 	public Booking findById(Long bId) {
-		return bookingRepository.findById(bId).orElse(null);
+		return null;//bookingRepository.findById(bId).orElse(null);
 	}
 
 	@Override
 	public void delete(Long bId) {
-		bookingRepository.deleteById(bId);
+		//bookingRepository.deleteById(bId);
 	}
 
 	@Override
 	public String assignReferenceNumber() {
-		if(bookingRepository.findAll().stream().count() == 0) return "BN1";
-		Long currentId = bookingRepository.findAll().stream().mapToLong(Booking::getId).max().getAsLong();
-		return  "BN" + (currentId + 1) ;
+//		if(bookingRepository.findAll().stream().count() == 0) return "BN1";
+//		Long currentId = bookingRepository.findAll().stream().mapToLong(Booking::getId).max().getAsLong();
+		return  null;//"BN" + (currentId + 1) ;
 	}
 
 	@Override

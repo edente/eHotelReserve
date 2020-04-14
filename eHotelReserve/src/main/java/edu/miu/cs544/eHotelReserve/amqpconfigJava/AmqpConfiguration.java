@@ -11,8 +11,9 @@ import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-
+//@ComponentScan("edu.miu.cs544.eHotelReserve")
 @Configuration
 public class AmqpConfiguration {
 
@@ -31,7 +32,7 @@ public class AmqpConfiguration {
 	    
 	    @Bean
 		Queue queueSanFrancisco() {
-			return new Queue("bookingQueueSanFrancisco", true);
+			return new Queue("bookingQueueSanfrancisco", true);
 		}
 	    
 	    @Bean
@@ -69,7 +70,7 @@ public class AmqpConfiguration {
 	    @Bean
 	    public RabbitTemplate bookingTemplateSanFrancisco() {
 	        RabbitTemplate bookingTemplate= new RabbitTemplate(connectionFactory());
-	        bookingTemplate.setDefaultReceiveQueue("bookingQueueSanFrancisco");
+	        bookingTemplate.setDefaultReceiveQueue("orderOnlineQueue");
 	        bookingTemplate.setRoutingKey("booking.SanFrancisco");
 	        bookingTemplate.setExchange("bookingDirectExchange");
 	        bookingTemplate.setReplyTimeout(2000);

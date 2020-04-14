@@ -17,10 +17,10 @@ public class DirectBranchListener {
 		//System.out.println("\n-------- New Booking Message Received from " + booking.getPickUpLocation() + " Branch Queue on Rabbitmq");
 		//System.out.println("-------- Booking Reference Number: " + booking.getReferenceNumber());
 		//System.out.println("-------- Sending Confirmation Email to Customer on " + booking.getEmail() + "\n");
-		System.out.println("-------- Customer's Full Name    : " + booking.getCustomer().getFirstName() + " " + booking.getCustomer().getLastName ()+ "\n");
+		System.out.println("-------- Customer's Full Name    : " +booking.getUser().getFirstName() + " " + booking.getUser().getLastName()+ "\n");
 
-		String name = booking.getCustomer().getFirstName();
-		//String email = booking.getEmail();
+		String name = booking.getUser().getFirstName();
+		//String email = booking.getUser().getAddress().getEmail();
 		String documentName = "eHotelReceipt.docx";
 
 		//ApplicationContext context = new ClassPathXmlApplicationContext("context/applicationContext.xml");
