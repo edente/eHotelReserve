@@ -19,15 +19,13 @@ public class DirectBranchListener {
 		//System.out.println("-------- Sending Confirmation Email to Customer on " + booking.getEmail() + "\n");
 		System.out.println("-------- Customer's Full Name    : " + booking.getCustomer().getFirstName() + " " + booking.getCustomer().getLastName ()+ "\n");
 
-
-		String name =booking.getCustomer().getFirstName();
+		String name = booking.getCustomer().getFirstName();
 		//String email = booking.getEmail();
 		String documentName = "eHotelReceipt.docx";
 
 		//ApplicationContext context = new ClassPathXmlApplicationContext("context/applicationContext.xml");
 
-		EmailService emailService =new EmailService(); //(EmailService) context.getBean("emailService");//
-		
+		EmailService emailService = new EmailService(); // (EmailService) context.getBean("emailService");
 		emailService.sendBookingConfirmationMail(name,booking,documentName,new Locale("en"));
 
 		//emailService.sendBookingConfirmationMail(name, email,booking,documentName,new Locale("en"));
