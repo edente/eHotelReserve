@@ -1,115 +1,128 @@
 package edu.miu.cs544.eHotelReserve.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
-public class Payment {
+@Table(name = "payments")
+public class Payment implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	long id;
+
 	
-	@OneToOne
-    private User customer;
-    private String cardType;
-    private String cardProvider;
-    private String cardFullName;
-    private String cardNumber;
-    private LocalDate expirationDate;
-    private String billingAddress;
-    private String cvv;
+	@Column(name = "payment_date")
+//	@NotNull(message = "*Please provide payment date")
+	private LocalDate paymentDate;
+
+	@Column(name = "payment_type")
+//	@NotNull(message = "*Please provide payment type") 
+    private String paymentType;
+
+	@Column(name = "card_number")
+//	@NotNull(message = "*Please provide payment card type") 
+    private Long cardNumber;
+    
+	@Column(name = "card_cvv")
+//	@NotNull(message = "*Please provide payment card CSV") 
+    private Integer cardCVV;
+    
+	@Column(name = "total_price") 
+    private Double totalPrice;
+    
+	@Column(name = "payment_status")
+//	@NotNull 
+	private String paymentStatus;
+	
 
     public Payment() {
     }
 
-    public Payment(String cardType, String cardProvider,
-                   String cardFullName, String cardNumber,
-                   LocalDate expirationDate,
-                   String billingAddress, String cvv) {
-        this.cardType = cardType;
-        this.cardProvider = cardProvider;
-        this.cardFullName = cardFullName;
-        this.cardNumber = cardNumber;
-        this.expirationDate = expirationDate;
-        this.billingAddress = billingAddress;
-        this.cvv = cvv;
-    }
 
-    public User getCustomer() {
-        return customer;
-    }
+	public Payment(User customer, LocalDate paymentDate, String paymentType, Long cardNumber,
+			Integer cardCVV, Double totalPrice, String paymentStatus) {
 
-    public void setCvv(User customer) {
-        this.customer = customer;
-    }
+		
+		this.paymentDate = paymentDate;
+		this.paymentType = paymentType;
+		this.cardNumber = cardNumber;
+		this.cardCVV = cardCVV;
+		this.totalPrice = totalPrice;
+		this.paymentStatus = paymentStatus;
+	}
 
-    public String getCardType() {
-        return cardType;
-    }
 
-    public void setCardType(String cardType) {
-        this.cardType = cardType;
-    }
 
-    public String getCardProvider() {
-        return cardProvider;
-    }
+	public LocalDate getPaymentDate() {
+		return paymentDate;
+	}
 
-    public void setCardProvider(String cardProvider) {
-        this.cardProvider = cardProvider;
-    }
 
-    public String getCardFullName() {
-        return cardFullName;
-    }
+	public void setPaymentDate(LocalDate paymentDate) {
+		this.paymentDate = paymentDate;
+	}
 
-    public void setCardFullName(String cardFullName) {
-        this.cardFullName = cardFullName;
-    }
 
-    public String getCardNumber() {
-        return cardNumber;
-    }
+	public String getPaymentType() {
+		return paymentType;
+	}
 
-    public void setCardNumber(String cardNumber) {
-        this.cardNumber = cardNumber;
-    }
 
-    public LocalDate getExpirationDate() {
-        return expirationDate;
-    }
+	public void setPaymentType(String paymentType) {
+		this.paymentType = paymentType;
+	}
 
-    public void setExpirationDate(LocalDate expirationDate) {
-        this.expirationDate = expirationDate;
-    }
 
-    public String getBillingAddress() {
-        return billingAddress;
-    }
+	public Long getCardNumber() {
+		return cardNumber;
+	}
 
-    public void setBillingAddress(String billingAddress) {
-        this.billingAddress = billingAddress;
-    }
 
-    public String getCvv() {
-        return cvv;
-    }
+	public void setCardNumber(Long cardNumber) {
+		this.cardNumber = cardNumber;
+	}
 
-    public void setCVV(String CVV) {
-        this.cvv = CVV;
-    }
 
-    public void setCustomer(User customer) {
-        this.customer = customer;
-    }
+	public Integer getCardCVV() {
+		return cardCVV;
+	}
 
-    public void setCvv(String cvv) {
-        this.cvv = cvv;
-    }
+
+	public void setCardCVV(Integer cardCVV) {
+		this.cardCVV = cardCVV;
+	}
+
+
+	public Double getTotalPrice() {
+		return totalPrice;
+	}
+
+
+	public void setTotalPrice(Double totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+
+	public String getPaymentStatus() {
+		return paymentStatus;
+	}
+
+
+	public void setPaymentStatus(String paymentStatus) {
+		this.paymentStatus = paymentStatus;
+	}
+
+   
 }

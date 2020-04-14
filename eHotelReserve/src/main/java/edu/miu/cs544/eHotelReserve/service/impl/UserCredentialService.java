@@ -16,7 +16,7 @@ import edu.miu.cs544.eHotelReserve.service.IUserCredentialService;
 public class UserCredentialService implements IUserCredentialService{
 	
 	private IUserCredentialRepository userCredentialRepository;
-	
+		
 	@Autowired
 	public UserCredentialService(IUserCredentialRepository userCredentialRepository) {
 		this.userCredentialRepository = userCredentialRepository;
