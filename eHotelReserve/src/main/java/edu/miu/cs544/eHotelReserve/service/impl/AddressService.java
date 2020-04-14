@@ -19,6 +19,7 @@ public class AddressService implements IAddressService {
 
 	@Override
 	public List<Address> findAll() {
+		
 		return addressRepository.findAll();
 	}
 	
