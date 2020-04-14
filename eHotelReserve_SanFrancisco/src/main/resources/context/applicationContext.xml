@@ -12,7 +12,7 @@
       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
       http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
-	<context:component-scan base-package="mum.edu.cs.cs544.project.ecarrent.emailservice" />
+	<context:component-scan base-package="mum.miu.cs544.eHotelReserve.emailservice" />
 
 	<bean class="org.springframework.context.support.ReloadableResourceBundleMessageSource" id="messageSource">
 		<property value="classpath:messages" name="basename"/>

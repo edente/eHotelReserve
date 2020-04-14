@@ -12,7 +12,7 @@
   
 <!--  ****************  Order Online CONSUMER ************************* -->
  <rabbit:listener-container connection-factory="connectionFactory">
-	<rabbit:listener ref="queueListener" method="listen" queue-names="orderOnlineQueue" />
+	<rabbit:listener ref="queueListener" method="listen" queue-names="bookingOnlineQueue" />
 </rabbit:listener-container>
 
 <bean id="queueListener" class="edu.mum.amqp.DirectOnlineListener" />

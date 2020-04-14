@@ -17,7 +17,7 @@
  * 
  * =============================================================================
  */
-package thymeleafexamples.springmail.service;
+package templates.images;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -37,7 +37,6 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.messageresolver.IMessageResolver;
 import static org.thymeleaf.templatemode.StandardTemplateModeHandlers.HTML5;
-import thymeleafexamples.springmail.tools.StaticTemplateExecutor;
 
 @Service
 public class EmailService {

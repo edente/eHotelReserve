@@ -9,16 +9,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.miu.cs544.eHotelReserve.dao.BookingDao;
+import edu.miu.cs544.eHotelReserve.dao.IBookingDao;
 import edu.miu.cs544.eHotelReserve.model.Booking;
-import edu.miu.cs544.eHotelReserve.service.BookingService;
+import edu.miu.cs544.eHotelReserve.service.IBookingService;
 
 @Service
 @Transactional 
-public class BookingServiceImpl implements BookingService{
+public class BookingServiceImpl implements IBookingService{
 	
  	@Autowired
-	private BookingDao bookingDao;
+	private IBookingDao bookingDao;
  	
 	@Override
 	public Booking getBookingById(Long id) {
