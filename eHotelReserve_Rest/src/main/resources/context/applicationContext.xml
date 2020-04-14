@@ -45,7 +45,7 @@
    </bean>
    
    <!-- Scan for  transaction-based resources -->
-   	<context:component-scan base-package="edu.mum.service,edu.mum.dao" />
+   	<context:component-scan base-package="edu.mim.cs544.eHotelReserve.service,edu.mim.cs544.eHotelReserve.dao" />
   
     <tx:annotation-driven transaction-manager="transactionManager"/>
  

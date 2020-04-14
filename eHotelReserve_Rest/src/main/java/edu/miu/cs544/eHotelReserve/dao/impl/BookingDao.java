@@ -5,14 +5,14 @@ import java.util.Map;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-import edu.miu.cs544.eHotelReserve.dao.BookingDao;
+import edu.miu.cs544.eHotelReserve.dao.IBookingDao;
 import edu.miu.cs544.eHotelReserve.model.Booking;
 
 @SuppressWarnings("unchecked")
 @Repository
-public class BookingDaoImpl extends GenericDaoImpl<Booking> implements BookingDao {
+public class BookingDao extends GenericDao<Booking> implements IBookingDao {
 
-	public BookingDaoImpl() {
+	public BookingDao() {
 		super.setDaoType(Booking.class);
 	}
 

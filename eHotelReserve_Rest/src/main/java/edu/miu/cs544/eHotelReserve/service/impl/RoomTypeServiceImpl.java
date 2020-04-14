@@ -6,35 +6,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.miu.cs544.eHotelReserve.dao.RoomTypeDao;
+import edu.miu.cs544.eHotelReserve.dao.IRoomTypeDao;
 import edu.miu.cs544.eHotelReserve.model.RoomType;
-import edu.miu.cs544.eHotelReserve.service.RoomTypeService;
+import edu.miu.cs544.eHotelReserve.service.IRoomTypeService;
 
 @Service
 @Transactional
-public class RoomTypeServiceImpl implements RoomTypeService {
+public class RoomTypeServiceImpl implements IRoomTypeService {
 
 	@Autowired
-	RoomTypeDao categoryDao;
+	IRoomTypeDao roomTypeDao;
 	
 	@Override
-	public RoomType getCategoryById(Long id) {
-		return categoryDao.findOne(id);
+	public RoomType getRoomTypeById(Long id) {
+		return roomTypeDao.findOne(id);
 	}
 
 	@Override
-	public List<RoomType> getCategoryList() {
-		return categoryDao.findAll();
+	public List<RoomType> getRoomTypeList() {
+		return roomTypeDao.findAll();
 	}
 
 	@Override
-	public void saveCategory(RoomType category) {
-		categoryDao.save(category);
+	public void saveRoomType(RoomType RoomType) {
+		roomTypeDao.save(RoomType);
 	}
 
 	@Override
-	public void deleteCategory(Long id) {
-		categoryDao.delete(id);
+	public void deleteRoomType(Long id) {
+		roomTypeDao.delete(id);
 	}
 
 }
