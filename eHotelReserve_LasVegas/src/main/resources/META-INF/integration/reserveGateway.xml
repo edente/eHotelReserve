@@ -24,10 +24,7 @@
  	<amqp:inbound-channel-adapter channel="fromAmqpReserve"
 		queue-names="reserveHotel" connection-factory="amqpConnectionFactory" />
 
- 	<channel id="processReserve" />
-    <transformer id="transformReserve" ref="reserveTransformer"  input-channel="fromAmqpReserve" output-channel="processReserve" />
-    <beans:bean id="reserveTransformer" class="edu.miu.cs544.eHotelReserve.integration.reserveTransformerImpl" />
- 
+ 	<channel id="processReserve" /> 
  	<jms:outbound-channel-adapter id="jmsoutLasVegas" channel="processReserve" destination="bookingLasVegasQueue"/>
  
  

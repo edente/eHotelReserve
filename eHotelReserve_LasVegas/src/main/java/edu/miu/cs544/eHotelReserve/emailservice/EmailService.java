@@ -28,7 +28,7 @@ public class EmailService {
 	
 	//final String recipientEmail,
 	public void sendBookingConfirmationMail(
-			final String recipientName,  Booking booking, String documentName, final Locale locale)
+			final String recipientName,Booking booking, String documentName, final Locale locale)
 			throws MessagingException {
 
 		// Prepare the Thymeleaf evaluation context
