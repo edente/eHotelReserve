@@ -11,9 +11,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
  
-@Entity(name = "USERS")
+@Entity
+@Table(name = "userCredentials")
 public class UserCredential {
 
 	 @Id
@@ -24,11 +26,8 @@ public class UserCredential {
 	String password;
 	
 	String verifyPassword;
+	
 	Boolean enabled;
-
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name="username", referencedColumnName= "username") 
-	List<Authority> authority;
 	
  	public String getUsername() {
 		return username;
@@ -53,12 +52,6 @@ public class UserCredential {
 	}
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
-	}
-	public List<Authority> getAuthority() {
-		return authority;
-	}
-	public void setAuthority(List<Authority> authority) {
-		this.authority = authority;
 	}
 	
 }

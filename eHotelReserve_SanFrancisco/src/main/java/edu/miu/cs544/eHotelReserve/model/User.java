@@ -1,46 +1,64 @@
 package edu.miu.cs544.eHotelReserve.model;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
+@Table(name="users")
 public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	private String userID;
+	//private String userID;
 	
 	@NotEmpty(message="{NotEmpty.validation}")
     private String firstName;
 	
 	@NotEmpty(message="{NotEmpty.validation}")
     private String lastName;
+	
+
+	@Column(name = "email")
+	@NotEmpty(message = "{NotEmpty}")
+    private String email;
     
 	@Valid
     @OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="address_id") 
     private Address address;
 	
 	@Valid
-	@OneToOne(cascade = CascadeType.ALL)
-	private UserCredential userCredential;
+	@OneToOne(fetch=FetchType.EAGER,  cascade = CascadeType.ALL) 
+	@JoinColumn(name="username") 
+	private UserCredential userCredentials;
+	
+	@OneToMany(mappedBy="user",fetch=FetchType.EAGER,  cascade = CascadeType.ALL)
+	private List<Booking> booking;
 	
 
     public UserCredential getUserCredential() {
-		return userCredential;
+		return userCredentials;
 	}
 
-	public void setUserCredential(UserCredential userCredential) {
-		this.userCredential = userCredential;
+	public void setUserCredential(UserCredential userCredentials) {
+		this.userCredentials = userCredentials;
 	}
 
 	public User() {}
@@ -84,11 +102,5 @@ public class User {
 		this.address = address;
 	}
 
-	public String getUserID() {
-		return userID;
-	}
-
-	public void setUserID(String userID) {
-		this.userID = userID;
-	}
+	
 }

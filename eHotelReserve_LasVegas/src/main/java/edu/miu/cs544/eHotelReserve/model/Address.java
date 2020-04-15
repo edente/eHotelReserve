@@ -8,12 +8,12 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-@Entity
+@Entity(name="addresses")
 public class Address {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long addressId;
+	private Long id;
 	
 	@NotEmpty(message="{NotEmpty.validation}")
     private String street;
@@ -47,12 +47,13 @@ public class Address {
 		this.phone = phone;
 	}
 
-	public long getId() {
-		return addressId;
+
+	public String getZipCode() {
+		return zipCode;
 	}
 
-	public void setId(long id) {
-		this.addressId = id;
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
 	}
 
 	public String getStreet() {

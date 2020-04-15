@@ -1,73 +1,155 @@
 package edu.miu.cs544.eHotelReserve.model;
 
+import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-@Entity
-public class Booking {
+@Entity(name="bookings")
+public class Booking implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
-	
-	private String bookingID;
-	
-	@Valid
-	@OneToOne
-	private User customer;
-	
-	@Valid
-	@OneToOne
-	private Room room;
-	
-	@NotNull(message = "{NotNull.validation}")
-	@DateTimeFormat(pattern = "MM-dd-yyyy")
-    private Date checkInDate;
-	
-	@NotNull(message = "{NotNull.validation}")
-	@DateTimeFormat(pattern = "MM-dd-yyyy")
-    private Date checkOutDate;
-	
-    private boolean gym;
-    private boolean parking;
-    
-    private Double price;
+	private Long id;
 
-    public Booking(){}
+	// private String bookingID;
+    @NotEmpty
+	@Column(name = "reference_number")
+	private String referenceNumber;
 
-    public Booking(User customer, Room room, Date checkInDate, Date checkOutDate, boolean gym,
-			boolean parking) {
-		this.customer = customer;
-		this.room = room;
-		this.checkInDate = checkInDate;
-		this.checkOutDate = checkOutDate;
-		this.gym = gym;
-		this.parking = parking;
-		Double totalPrice = 0.0;
-		if(gym) totalPrice += 10;
-		if(parking) totalPrice += 20;
-		totalPrice += room.getPrice();
-		this.price = totalPrice;
+	@Column(name = "booking_date")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull
+	private LocalDate bookingDate;
+
+	@NotNull
+	@DateTimeFormat(pattern = "MM-dd-yyyy")
+	private LocalDate checkInDate;
+
+	@NotNull
+	@DateTimeFormat(pattern = "MM-dd-yyyy")
+	private LocalDate checkOutDate;
+
+	@Column(name = "total_price")
+	private Double totalPrice;
+	@NotEmpty
+	@Column(name = "hotel_reserve_location")
+	private String hotelReserveLocation;
+
+	public String getHotelReserveLocation() {
+		return hotelReserveLocation;
 	}
 
-	public long getId() {
+	public void setHotelReserveLocation(String hotelReserveLocation) {
+		this.hotelReserveLocation = hotelReserveLocation;
+	}
+
+	@Valid
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "user_id")
+	private User user;
+
+	@ManyToOne
+	@JoinColumn(name = "room_id", nullable = true)
+	private Room room;
+
+	@OneToOne
+	@JoinColumn(name = "payment_id")
+	@Valid
+	private Payment payment;
+
+	public Booking() {
+
+	}
+
+	public Booking(Long id,String referenceNumber,LocalDate bookingDate,
+			LocalDate checkInDate,
+			LocalDate checkOutDate, Double totalPrice,String location,  User user,
+			Room room, Payment payment) {
+		this.id=id;
+		this.referenceNumber = referenceNumber;
+		this.bookingDate = bookingDate;
+		this.checkInDate = checkInDate;
+		this.checkOutDate = checkOutDate;
+		this.totalPrice = totalPrice;
+		this.hotelReserveLocation=location;
+		this.user = user;
+		this.room = room;
+		this.payment = payment;
+	}
+
+	public Long getId() {
 		return id;
 	}
 
-	public User getCustomer() {
-		return customer;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public void setCustomer(User customer) {
-		this.customer = customer;
+	public String getReferenceNumber() {
+		return referenceNumber;
+	}
+
+	public void setReferenceNumber(String referenceNumber) {
+		this.referenceNumber = referenceNumber;
+	}
+
+
+	public LocalDate getBookingDate() {
+		return bookingDate;
+	}
+
+	public void setBookingDate(LocalDate bookingDate) {
+		this.bookingDate = bookingDate;
+	}
+
+	public LocalDate getCheckInDate() {
+		return checkInDate;
+	}
+
+	public void setCheckInDate(LocalDate checkInDate) {
+		this.checkInDate = checkInDate;
+	}
+
+	public LocalDate getCheckOutDate() {
+		return checkOutDate;
+	}
+
+	public void setCheckOutDate(LocalDate checkOutDate) {
+		this.checkOutDate = checkOutDate;
+	}
+
+	public Double getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(Double totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public Room getRoom() {
@@ -78,52 +160,12 @@ public class Booking {
 		this.room = room;
 	}
 
-	public Date getCheckInDate() {
-		return checkInDate;
+	public Payment getPayment() {
+		return payment;
 	}
 
-	public void setCheckInDate(Date checkInDate) {
-		this.checkInDate = checkInDate;
+	public void setPayment(Payment payment) {
+		this.payment = payment;
 	}
 
-	public Date getCheckOutDate() {
-		return checkOutDate;
-	}
-
-	public void setCheckOutDate(Date checkOutDate) {
-		this.checkOutDate = checkOutDate;
-	}
-
-	public boolean isGym() {
-		return gym;
-	}
-
-	public void setGym(boolean gym) {
-		this.gym = gym;
-	}
-
-	public boolean isParking() {
-		return parking;
-	}
-
-	public void setParking(boolean parking) {
-		this.parking = parking;
-	}
-
-	public Double getPrice() {
-		return price;
-	}
-
-	public void setPrice(Double price) {
-		this.price = price;
-	}
-
-	public String getBookingID() {
-		return bookingID;
-	}
-
-	public void setBookingID(String bookingID) {
-		this.bookingID = bookingID;
-	}
-	
 }
