@@ -25,7 +25,7 @@ public class RoomTypeController {
 	@Autowired
     private IRoomTypeService roomTypeService;
 	
-	@GetMapping(value = "/")
+	@GetMapping(value = "")
     public ModelAndView manageRoomTypes() {
         ModelAndView modelAndView = new ModelAndView();
         List<RoomType> roomTypes = roomTypeService.findAll();

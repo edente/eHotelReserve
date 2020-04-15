@@ -19,25 +19,20 @@
     	<table class="table table-striped">
 			<thead>
 				<th scope="col">No.</th>
-				<th>Category Name</th>
-				<th>Number of Seats</th>
-				<th>Number of Doors</th>
-				<th>Fuel Economy</th>
-				<th>Daily Rate</th>
-				<th>Actions</th>
+				<th>Room Type Name</th>
+				<th>Price</th>
 			</thead>
 			<tbody>
-				<tr th:each="category, rowNumbering : ${categories}">
+				<tr th:each="roomType, rowNumbering : ${roomTypes}">
 					<td scope="row" th:text="${rowNumbering.count}+'.'"></td>
-					<td th:text="${category.categoryName}"></td>
-					<td th:text="${category.seats}"></td>
-					<td th:text="${category.doors}"></td>
-					<td th:text="${category.fuelEconomy}"></td>
-					<td th:text="${category.ratePerDay}"></td>
-					<td>
-						<a th:href="@{'/company/admin/categories/edit/' + ${category.categoryId}}" class="btn btn-outline-success">Edit</a>
-						<a th:href="@{'/company/admin/categories/delete/' + ${category.categoryId}}" class="btn btn-outline-warning">Delete</a>
-					</td>
+					<td th:text="${roomType.roomTypeName}"></td>
+					<td th:text="${roomType.price}"></td>
+
+					<!--<td> 
+						<a th:href="@{'/company/admin/categories/edit/' + ${roomType.roomTypeId}}" class="btn btn-outline-success">Edit</a>
+						<a th:href="@{'/company/admin/categories/delete/' + ${roomType.roomTypeId}}" class="btn btn-outline-warning">Delete</a> 
+						
+					</td>-->
 				</tr>
 			</tbody>
 		</table>
