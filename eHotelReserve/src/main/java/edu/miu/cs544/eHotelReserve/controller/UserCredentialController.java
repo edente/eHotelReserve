@@ -42,7 +42,7 @@ public class UserCredentialController {
 			model.addAttribute("errors", bindingResult.getAllErrors());
 			return "credential/registration";
 		}
-		userCredential = userCredentialService.save(userCredential);
+		 userCredentialService.save(userCredential);
 		return "redirect:/hotel/credential/login";
 	}
 

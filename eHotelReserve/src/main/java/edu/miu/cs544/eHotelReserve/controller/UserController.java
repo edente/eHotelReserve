@@ -40,7 +40,7 @@ public class UserController {
 			model.addAttribute("errors", bindingResult.getAllErrors());
 			return "user/users/newuserform";
 		}
-		user = userService.save(user);
+		 userService.save(user);
 		return "redirect:/hotel/user/users";
 	}
 
@@ -54,9 +54,9 @@ public class UserController {
 		return "user/users/users";
 	}
 
-	@GetMapping(value = "/delete/{userId}")
-	public String deleteUser(@PathVariable("userId") Long id, Model model) {
-		userService.delete(id);
-		return "redirect:/hotel/user/users";
-	}
+//	@GetMapping(value = "/delete/{userId}")
+//	public String deleteUser(@PathVariable("userId") Long id, Model model) {
+//		userService.delete(id);
+//		return "redirect:/hotel/user/users";
+//	}
 }
