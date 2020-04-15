@@ -54,11 +54,11 @@ public class RoomType {
 		this.price = price;
 	}
 
-	public String getRoomName() {
+	public String getRoomTypeName() {
 		return roomTypeName;
 	}
 
-	public void setRoomName(String roomName) {
+	public void setRoomTypeName(String roomName) {
 		this.roomTypeName = roomName;
 	}
 
