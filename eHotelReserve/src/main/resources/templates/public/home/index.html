@@ -14,6 +14,7 @@
     	<div class="col-xs-4 text-center">
     		<h1>Book Your Hotel Now</h1>
     	</div>
+    	<a class="nav-link" href="/hotel/admin/roomTypes/">RoomType</a>
     	 <!-- ? start=start & end=end -->
         <form id="searchForm" method="get" th:action="@{/hotel/search}">
             <fieldset>
@@ -38,6 +39,8 @@
     			</div>                         
             </fieldset>
         </form>
+                       
+              
     </th:block>
     <th:block layout:fragment="footer"></th:block>
 </body>

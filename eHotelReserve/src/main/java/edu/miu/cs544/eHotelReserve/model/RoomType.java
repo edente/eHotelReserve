@@ -32,7 +32,7 @@ public class RoomType {
 	@OneToMany(mappedBy = "roomType", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Room> rooms;
 	
-	public RoomType() {}
+	public RoomType() {} 
 
 	public RoomType(String roomType_id, String roomName,
 			 Double price, List<Room> rooms) {
@@ -54,12 +54,22 @@ public class RoomType {
 		this.price = price;
 	}
 
-	public String getRoomName() {
+
+
+	public Long getRoomTypeId() {
+		return roomTypeId;
+	}
+
+	public void setRoomTypeId(Long roomTypeId) {
+		this.roomTypeId = roomTypeId;
+	}
+
+	public String getRoomTypeName() {
 		return roomTypeName;
 	}
 
-	public void setRoomName(String roomName) {
-		this.roomTypeName = roomName;
+	public void setRoomTypeName(String roomTypeName) {
+		this.roomTypeName = roomTypeName;
 	}
 
 	public Double getPrice() {
