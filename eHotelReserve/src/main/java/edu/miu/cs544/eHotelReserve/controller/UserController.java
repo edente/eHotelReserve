@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import edu.miu.cs544.eHotelReserve.model.Address;
 import edu.miu.cs544.eHotelReserve.model.User;
 import edu.miu.cs544.eHotelReserve.service.IUserService;
 
 @RequestMapping("/hotel/user/users")
 @Controller
+
 public class UserController {
 
 	@Autowired
@@ -33,6 +35,13 @@ public class UserController {
 		modelAndView.setViewName("user/users/users");
 		return modelAndView;
 	}
+	
+	@GetMapping(value = "/add")
+    public String newUserForm(Model model) {
+		User user = new User();
+        model.addAttribute("user", user);
+        return "user/users/newuserform";
+    }
 
 	@PostMapping(value = "/add/save")
 	public String addNewUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model) {

@@ -25,7 +25,7 @@ public class UserService implements IUserService{
 	@Autowired
 	RestHttpHeader restHelper;
 
-	String baseUrl = "http://localhost:8080/UserRest/users";
+	String baseUrl = "http://localhost:8000/MemberRest/hotel/user/users";///hotel/user/users
 	String baseUrlExtended = baseUrl + "/";
 	
 public List<User> findAll() {
