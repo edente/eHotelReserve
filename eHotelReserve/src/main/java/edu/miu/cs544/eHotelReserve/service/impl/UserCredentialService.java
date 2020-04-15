@@ -2,8 +2,6 @@ package edu.miu.cs544.eHotelReserve.service.impl;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import edu.miu.cs544.eHotelReserve.model.UserCredential;
@@ -30,11 +28,12 @@ public class UserCredentialService implements IUserCredentialService{
 
 	@Override
 	public UserCredential save(UserCredential userCredential) {
-
-  		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();   		
-  		String encodedPassword = passwordEncoder.encode(userCredential.getPassword());
-  		userCredential.setPassword(encodedPassword);
-  		return userCredentialRepository.save(userCredential);
+//
+//  		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();   		
+//  		String encodedPassword = passwordEncoder.encode(userCredential.getPassword());
+//  		userCredential.setPassword(encodedPassword);
+//  		return userCredentialRepository.save(userCredential);
+		return null;
   		
 	}
 
