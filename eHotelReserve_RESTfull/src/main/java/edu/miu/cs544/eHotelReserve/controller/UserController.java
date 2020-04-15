@@ -53,7 +53,9 @@ public class UserController {
 	@GetMapping(value = {"","/all"})
     public List<User> getUsers() {
 		System.out.println("****I am in the list of users******");
-        return userService.findAll();
+		List<User> users =  userService.findAll();
+		System.out.println(users);
+		return userService.findAll();
         
 
     }

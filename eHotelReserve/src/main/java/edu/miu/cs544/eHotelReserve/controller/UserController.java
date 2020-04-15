@@ -27,8 +27,9 @@ public class UserController {
 	@Autowired
 	private IUserService userService;
 
-	@GetMapping(value = "/")
-	public ModelAndView manageCategories() {
+	@GetMapping(value = "")
+	public ModelAndView manageUsers() {
+		System.out.println("****in the list of users****");
 		ModelAndView modelAndView = new ModelAndView();
 		List<User> users = userService.findAll();
 		modelAndView.addObject("users", users);
@@ -39,7 +40,9 @@ public class UserController {
 	@GetMapping(value = "/add")
     public String newUserForm(Model model) {
 		User user = new User();
+		Address address=user.getAddress();
         model.addAttribute("user", user);
+        model.addAttribute("address",address);
         return "user/users/newuserform";
     }
 
@@ -49,6 +52,7 @@ public class UserController {
 			model.addAttribute("errors", bindingResult.getAllErrors());
 			return "user/users/newuserform";
 		}
+		System.out.println("come to save******");
 		 userService.save(user);
 		return "redirect:/hotel/user/users";
 	}
