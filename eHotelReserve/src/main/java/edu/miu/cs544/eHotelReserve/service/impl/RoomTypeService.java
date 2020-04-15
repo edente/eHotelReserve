@@ -20,8 +20,8 @@ public class RoomTypeService implements IRoomTypeService{
 	
 //	private IRoomTypeRepository roomTypeRepository;
 	
-	String baseUrl = "http://localhost:8000/MemberRest/hotel/admin/roomTypes";
-	String baseUrlExtended = baseUrl + "/";
+	String baseUrl = "http://localhost:8000/MemberRest/roomTypes";
+	String baseUrlExtended = baseUrl + "/save";
 	@Autowired
 	RestHttpHeader restHelper;
 	
@@ -42,8 +42,13 @@ public class RoomTypeService implements IRoomTypeService{
 	}
 
 	@Override
-	public RoomType save(RoomType category) {
+	public RoomType save(RoomType roomType) {
 //		return roomTypeRepository.save(category);
+		
+		RestTemplate restTemplate = restHelper.getRestTemplate();
+		// HTTPEntity - SEND Headers & Body
+		HttpEntity<RoomType> httpEntity = new HttpEntity<RoomType>(roomType, restHelper.getHttpHeaders());
+		restTemplate.postForObject(baseUrlExtended, httpEntity, RoomType.class);
 		return null;
 	}
 
