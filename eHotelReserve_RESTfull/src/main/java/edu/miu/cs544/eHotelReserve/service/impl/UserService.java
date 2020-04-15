@@ -38,4 +38,17 @@ public class UserService implements IUserService{
 		userDao.delete(uId);
 	}
 
+	@Override
+	public void update(User user) {
+		userDao.update(user);
+		
+	}
+
+
+	@Override
+	public void patch(Long id, User patchUser) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

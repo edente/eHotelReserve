@@ -9,8 +9,8 @@ import edu.miu.cs544.eHotelReserve.model.User;
 public interface IUserService {
 	
 	List<User>findAll();
-	User save(User user);
+	void save(User user);
 	User findById(Long uId);
-	void delete(Long uId);
+	//void delete(Long uId);
 
 }

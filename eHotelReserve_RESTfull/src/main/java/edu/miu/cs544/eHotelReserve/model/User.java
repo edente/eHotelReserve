@@ -63,14 +63,18 @@ public class User {
 
 	public User() {}
 
-    public User(String firstName, String lastName, Address address, String userName, String password) {
+    
+    
+    
+
+	public User( String firstName,
+			String lastName,
+			 String email) {
+		
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.address = address;
-		
+		this.email = email;
 	}
-    
-    
 
 	public User(String firstName, String lastName) {
 		this.firstName = firstName;
