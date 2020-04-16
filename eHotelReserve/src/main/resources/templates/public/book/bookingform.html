@@ -5,10 +5,10 @@
 	<th:block layout:fragment="header"></th:block>
     <th:block layout:fragment="content">
     			<h3>BOOKING FORM</h3>
-    	<form id="bookingForm" method="post" action="/company/public/bookings/addnew/save/" th:object="${booking}">
+    	<form id="bookingForm" method="post" action="/hotel/public/bookings/addnew/save/" th:object="${booking}">
     		<fieldset>
     			<!-- <input type="hidden" name="categoryId" th:value="${category.categoryId}"/> -->
-    			<input type="hidden" name="bookingId" th:value="${booking.bookingId}"/>
+    			<input type="hidden" name="bookingId" th:value="${booking.id}"/>
                 <div class="container" style="margin-top: 1em;">
                    	<div class="row">
                			<div class="col-md-3">               			
@@ -27,70 +27,54 @@
 			       		</div>
 			       		<div class="col-md-3">                
                 			<div class="form-group">               
-								<label for="startDate">Start Date</label>
-			                    <span th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}" class="alert alert-danger"></span>
-			                    <input id="startDate" name="startDate" type="date" class="form-control" aria-describedby="startDatehHelp" th:value="${booking.startDate}" readOnly>             
+								<label for="checkInDate">Start Date</label>
+			                    <span th:if="${#fields.hasErrors('checkInDate')}" th:errors="*{checkInDate}" class="alert alert-danger"></span>
+			                    <input id="checkInDate" name="checkInDate" type="date" class="form-control" aria-describedby="startDatehHelp" th:value="${booking.checkInDate}" readOnly>             
 <!-- 			               		<small id="startDateHelp" class="form-text text-muted">Enter a valid Date.</small>
  -->			                </div>
 			            </div> 
 			            <div class="col-md-3">    
 			                <div class="form-group">               
-								<label for="endDate">End Date</label>
-			                    <span th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}" class="alert alert-danger"></span>
-			                    <input id="endDate" name="endDate" type="date" class="form-control" aria-describedby="endDatehHelp" th:value="${booking.endDate}" readonly>             
+								<label for="checkOutDate">End Date</label>
+			                    <span th:if="${#fields.hasErrors('checkOutDate')}" th:errors="*{checkOutDate}" class="alert alert-danger"></span>
+			                    <input id="checkOutDate" name="checkOutDate" type="date" class="form-control" aria-describedby="endDatehHelp" th:value="${booking.checkOutDate}" readonly>             
 <!-- 			               		<small id="endDateHelp" class="form-text text-muted">Enter a valid Date.</small>
  -->			                </div>
 	                 	</div>
 	                 	
 	                 	<div class="col-md-6">
 		                	<div class="form-group">               
-								<label for="firstName">First Name</label>
-			                    <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="alert alert-danger"></span>
-			                    <input id="firstName" name="firstName" type="text" class="form-control" th:value="${booking.firstName}">             
+								<label for="user.firstName">First Name</label>
+			                    <span th:if="${#fields.hasErrors('user.firstName')}" th:errors="*{user.firstName}" class="alert alert-danger"></span>
+			                    <input id="user.firstName" name="user.firstName" type="text" class="form-control" th:value="${booking.user.firstName}">             
 			                </div>
 	                	</div>
 	                	
 	                	<div class="col-md-6">
 		                	<div class="form-group">               
-								<label for="lastName">Last Name</label>
-			                    <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="alert alert-danger"></span>
-			                    <input id="lastName" name="lastName" type="text" class="form-control" th:value="${booking.lastName}">             
+								<label for="user.lastName">Last Name</label>
+			                    <span th:if="${#fields.hasErrors('user.lastName')}" th:errors="*{user.lastName}" class="alert alert-danger"></span>
+			                    <input id="user.lastName" name="user.lastName" type="text" class="form-control" th:value="${booking.user.lastName}">             
 			                </div>
 	                	</div>
-	                	
+	              	                	
 	                	<div class="col-md-6">
 		                	<div class="form-group">               
-								<label for="dateOfBirth">Date of Birth</label>
-			                    <span th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}" class="alert alert-danger"></span>
-			                    <input id="dateOfBirth" name="dateOfBirth" type="date" class="form-control" th:value="${booking.dateOfBirth}">             
-			                </div>
-	                	</div>
-	                	
-	                	<div class="col-md-6">
-		                	<div class="form-group">               
-								<label for="licenseNumber">Driving License Number</label>
-			                    <span th:if="${#fields.hasErrors('licenseNumber')}" th:errors="*{licenseNumber}" class="alert alert-danger"></span>
-			                    <input id="licenseNumber" name="licenseNumber" type="text" class="form-control" th:value="${booking.licenseNumber}">             
-			                </div>
-	                	</div>
-	                	
-	                	<div class="col-md-6">
-		                	<div class="form-group">               
-								<label for="email">Email Address</label>
-			                    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="alert alert-danger"></span>
-			                    <input id="email" name="email" type="email" class="form-control" th:value="${booking.email}">             
+								<label for="user.email">Email Address</label>
+			                    <span th:if="${#fields.hasErrors('user.email')}" th:errors="*{user.email}" class="alert alert-danger"></span>
+			                    <input id="user.email" name="user.email" type="email" class="form-control" th:value="${booking.user.email}">             
 			                </div>
 	                	</div>
 	                	
 	                	<div class="col-md-3" style="float=right">
 		                	<div class="form-group">               
-								<label for="pickUpLocation">PICK UP LOCATION</label>
-			                    <span th:if="${#fields.hasErrors('pickUpLocation')}" th:errors="*{pickUpLocation}" class="alert alert-danger"></span>			            
-			                    <select name="pickUpLocation" id="pickUpLocation" type="text" class="form-control" th:value="${booking.pickUpLocation}" required="required">
+								<label for="hotelReserveLocation">PICK UP LOCATION</label>
+			                    <span th:if="${#fields.hasErrors('hotelReserveLocation')}" th:errors="*{hotelReserveLocation}" class="alert alert-danger"></span>			            
+			                    <select name="hotelReserveLocation" id="hotelReserveLocation" type="text" class="form-control" th:value="${booking.hotelReserveLocation}" required="required">
 			                         	<option value="">Select Location</option>
-			                         	<option value="Fairfield">Fairfield</option>
-			                         	<option value="Ottumwa">Ottumwa</option>
-			                         	<option value="Burlington">Burlington</option>		               
+			                         	<option value="SanFrancisco">SanFransisco</option>
+			                         	<option value="LasVegas">LasVegas</option>
+			                         	<option value="SanJose">SanJose</option>		               
 			                    </select>            
 			                </div>
 	                	</div> 

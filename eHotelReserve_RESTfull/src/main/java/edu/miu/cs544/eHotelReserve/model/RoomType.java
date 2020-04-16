@@ -26,6 +26,14 @@ public class RoomType {
 	@Column(name="roomtype_id")
 	private Long roomTypeId;
 	
+	public Long getRoomTypeId() {
+		return roomTypeId;
+	}
+
+	public void setRoomTypeId(Long roomTypeId) {
+		this.roomTypeId = roomTypeId;
+	}
+
 	@NotEmpty
 	private String roomTypeName;
 	
