@@ -22,7 +22,7 @@ public class RoomTypeService implements IRoomTypeService{
 	String baseUrl = "http://localhost:8000/MemberRest/roomTypes";
 	String baseUrlExtended = baseUrl + "/save";
 	@Autowired
-	RestHttpHeader restHelper;
+	edu.miu.cs544.eHotelReserve.RestHttpHeader restHelper;
 	
 //	
 //	@Autowired
