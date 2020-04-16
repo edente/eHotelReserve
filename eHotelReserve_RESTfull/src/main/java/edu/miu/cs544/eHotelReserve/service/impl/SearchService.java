@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import edu.miu.cs544.eHotelReserve.dao.IBookingDao;
 import edu.miu.cs544.eHotelReserve.dao.IRoomDao;
+import edu.miu.cs544.eHotelReserve.dao.IRoomTypeDao;
 import edu.miu.cs544.eHotelReserve.model.Booking;
 import edu.miu.cs544.eHotelReserve.model.Room;
 import edu.miu.cs544.eHotelReserve.model.RoomType;
@@ -18,22 +19,27 @@ public class SearchService implements ISearchService {
 	
 	private IRoomDao roomDao;
 	private IBookingDao bookingDao;
+	private IRoomTypeDao roomType;
 	
-	public SearchService(IRoomDao roomDao, IBookingDao bookingDao) {
+	public SearchService(IRoomDao roomDao, IBookingDao bookingDao, IRoomTypeDao roomType) {
 		this.roomDao = roomDao;
 		this.bookingDao = bookingDao;
+		this.roomType=roomType;
 	}
 
 
 
 	@Override
 	public List<RoomType> findAvailableRoomTypes(LocalDate start, LocalDate end) {
-		return getAvailableRoom(start, end).stream()
-				   .map(v -> v.getRoomtype())
-				   .distinct()
-				   .collect(Collectors.toList());
+		
+		return roomType.findAll();
+				
+//		return getAvailableRoom(start, end).stream()
+//				   .map(v -> v.getRoomtype())
+//				   .distinct()
+//				   .collect(Collectors.toList());
 	}
- 
+  
 	@Override
 	public List<Room> getAvailableRoom(LocalDate start, LocalDate end) {
 		List<Room> bookedRooms = bookingDao.findAll().stream()
@@ -41,8 +47,9 @@ public class SearchService implements ISearchService {
 								|| b.getCheckOutDate().isAfter(start) && b.getCheckOutDate().isBefore(end) )			
 				.map(Booking::getRoom)
 				.collect(Collectors.toList());		
+		System.out.println("============"+bookedRooms);
 		return roomDao.findAll().stream()
-				  				.filter(v -> !bookedRooms.contains(v))
+//				  				.filter(v -> !bookedRooms.contains(v))
 				  				.collect(Collectors.toList()); 
 	}
 	

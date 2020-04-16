@@ -42,10 +42,13 @@ public class SearchController {
 	
 	@GetMapping(value = "/hotel/search")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-    public ModelAndView searchRooms(@RequestParam("checkIn") @DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate checkIn, 
-    		@RequestParam("checkOut") @DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate checkOut) {
+    public ModelAndView searchRooms(@RequestParam("start") @DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate checkIn, 
+    		@RequestParam("end") @DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate checkOut) {
+
 		ModelAndView modelAndView = new ModelAndView();
+		System.out.println("============------------------========================");
         List<RoomType> availableRoomTypes = searchService.findAvailableRoomTypes(checkIn, checkOut);
+		System.out.println("============------------------========================"+availableRoomTypes.get(1).getPrice());
         modelAndView.addObject("availableRoomTypes", availableRoomTypes);
         modelAndView.setViewName("public/search/results");
         temp.setStart(checkIn);
