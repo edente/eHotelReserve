@@ -21,6 +21,7 @@ public class RoomTypeController {
 	@GetMapping(value = {"roomTypes","roomTypes/all"})
     public List<RoomType> manageCategories() {
         return roomTypeService.getRoomTypeList();
+        
     }
 	
 //	@GetMapping(value = "/add")

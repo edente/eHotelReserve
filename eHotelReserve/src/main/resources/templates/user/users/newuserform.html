@@ -45,34 +45,34 @@
                         <button id="btnSubmit" type="submit" class="btn btn-outline-primary">Register User</button>
                     </div>             
             </fieldset>
-            
+             <!-- 
          <h3>Address Details</h3>
             
-             <!--  <fieldset>
-                <input type="hidden" name="address.id" th:value="${address.id}" /> -->
+              <fieldset>
+                <input type="hidden" name="user.address.id" th:value="${user.address.id}" /> 
                 
-              <!--   <br></br>
+                 <br></br>
                 <div class="form-group">               
 					<label for="street">Street</label>
-                    <span th:if="${#fields.hasErrors('street')}" th:errors="*{street}" class="alert alert-danger"></span>
-                    <input id="street" name="street" type="text" class="form-control" th:value="${user.address.street}">              
-                </div>  --> -->
+                    <span th:if="${#fields.hasErrors('street')}" th:errors="*{adress.street}" class="alert alert-danger"></span>
+                    <input id="address.street" name="street" type="text" class="form-control" th:value="${user.address.street}">              
+                </div>   
                 
               <!--   <div class="form-group">               
 					<label for="city">City</label>
                     <span th:if="${#fields.hasErrors('city')}" th:errors="*{city}" class="alert alert-danger"></span>
-                    <input id="city" name="city" type="text" class="form-control" th:value="${user.lastName}">              
+                    <input id="city" name="city" type="text" class="form-control" th:value="${user.address.city}">              
                 </div>
                 
-        
+        --> 
                 
-                <div class="form-group">
+             <!--   <div class="form-group">
                 	<label for="email">email</label>
-                   	<span th:if="${#fields.hasErrors('licenseNumber')}" th:errors="*{email}" class="alert alert-danger"></span>
+                   	<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="alert alert-danger"></span>
                     <input id="email" name="email" type="text" class="form-control" th:value="${user.email}">
-                </div>           -->    
-            <!-- </fieldset> --> -->
-            
+                </div>              
+             </fieldset> 
+            -->
         </form>
     </th:block>
     <th:block layout:fragment="footer"></th:block>

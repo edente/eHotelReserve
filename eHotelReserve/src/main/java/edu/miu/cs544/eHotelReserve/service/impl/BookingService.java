@@ -2,8 +2,6 @@ package edu.miu.cs544.eHotelReserve.service.impl;
 
 import java.util.List;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Component;
@@ -80,9 +78,10 @@ System.out.println(booking.getReferenceNumber());
 			RabbitTemplate rabbitTemplate = context.getBean("bookingTemplateLasVegas",RabbitTemplate.class);
 			rabbitTemplate.convertAndSend(newBooking);
 		}
-		System.out.println("\n-------- New Booking Sent to " + newBooking.getHotelReserveLocation() + " Branch Queue on Rabbitmq");
-		System.out.println("-------- Booking Reference Number: " + newBooking.getReferenceNumber());
-		System.out.println("-------- Customer's Full Name    : " + newBooking.getUser().getFirstName() + " " + newBooking.getUser().getLastName() + "\n");
+		System.out.println("\n------New Booking Sent to " + newBooking.getHotelReserveLocation() + " Branch Queue on Rabbitmq");
+		System.out.println("--------Booking Reference Number: " + newBooking.getReferenceNumber());
+		System.out.println("--------Booking email: " + newBooking.getUser().getAddress().getEmail());
+		System.out.println("--------Customer's Full Name    : " + newBooking.getUser().getFirstName() + " " + newBooking.getUser().getLastName() + "\n");
 	}
 
 

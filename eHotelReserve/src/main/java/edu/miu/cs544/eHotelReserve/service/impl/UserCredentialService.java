@@ -16,21 +16,17 @@ import edu.miu.cs544.eHotelReserve.model.UserCredential;
 import edu.miu.cs544.eHotelReserve.repository.IUserCredentialRepository;
 import edu.miu.cs544.eHotelReserve.service.IUserCredentialService;
 
-
-
-
-
 @Service("userCredentialService")
-public class UserCredentialService implements IUserCredentialService{
-	
+public class UserCredentialService implements IUserCredentialService {
+
 	@Autowired
 	RestHttpHeader restHelper;
 
-	String baseUrl = "http://localhost:8080/UserCredentialRest/userCredentials";
+	String baseUrl = "http://localhost:8000/MemberRest/userCredentials";
 	String baseUrlExtended = baseUrl + "/";
 
-	private UserCredential userCredentials  = new UserCredential();	
- 
+	private UserCredential userCredentials = new UserCredential();
+
 	public UserCredential getUserCredentials() {
 		return userCredentials;
 	}
@@ -38,40 +34,33 @@ public class UserCredentialService implements IUserCredentialService{
 	public void setUserCredentials(UserCredential userCredentials) {
 		this.userCredentials = userCredentials;
 	}
-	
-	
+
 	public List<UserCredential> findAll() {
-		
+
 		RestTemplate restTemplate = restHelper.getRestTemplate();
-		HttpEntity <UserCredential>httpEntity = new HttpEntity<UserCredential>(restHelper.getHttpHeaders());
-		ResponseEntity<UserCredential[]> responseEntity = restTemplate.exchange(baseUrl, HttpMethod.GET, httpEntity, UserCredential[].class);	
- 		List<UserCredential> userList = Arrays.asList(responseEntity.getBody());
+		HttpEntity<UserCredential> httpEntity = new HttpEntity<UserCredential>(restHelper.getHttpHeaders());
+		ResponseEntity<UserCredential[]> responseEntity = restTemplate.exchange(baseUrl, HttpMethod.GET, httpEntity,
+				UserCredential[].class);
+		List<UserCredential> userList = Arrays.asList(responseEntity.getBody());
 		return userList;
 	}
 
-	
-
 	public void save(UserCredential userCredentials) {
 		RestTemplate restTemplate = restHelper.getRestTemplate();
-		HttpEntity<UserCredential> httpEntity = new HttpEntity<UserCredential>(userCredentials, restHelper.getHttpHeaders());
+		HttpEntity<UserCredential> httpEntity = new HttpEntity<UserCredential>(userCredentials,
+				restHelper.getHttpHeaders());
 		userCredentials = restTemplate.postForObject(baseUrl, httpEntity, UserCredential.class);
 		return;
 	}
-
-	
 
 	@Override
 	public UserCredential findByUserName(String userName) {
 		RestTemplate restTemplate = restHelper.getRestTemplate();
 		HttpEntity<UserCredential> httpEntity = new HttpEntity<UserCredential>(restHelper.getHttpHeaders());
-		ResponseEntity<UserCredential> responseEntity = restTemplate.exchange(baseUrlExtended + userName, HttpMethod.GET, httpEntity, UserCredential.class);	
+		ResponseEntity<UserCredential> responseEntity = restTemplate.exchange(baseUrlExtended + userName,
+				HttpMethod.GET, httpEntity, UserCredential.class);
 		UserCredential userCrsdential = responseEntity.getBody();
- 		return userCrsdential;
+		return userCrsdential;
 	}
 
-	
-
-	
-
 }
-	

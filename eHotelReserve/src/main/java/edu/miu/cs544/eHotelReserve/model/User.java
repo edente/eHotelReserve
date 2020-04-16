@@ -20,9 +20,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User implements Serializable {
-	
+
 	/**
 	 * 
 	 */
@@ -31,35 +31,53 @@ public class User implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long userId;
-	
-	//private String userID;
-	
-	@NotEmpty(message="{NotEmpty.validation}")
-    private String firstName;
-	
-	@NotEmpty(message="{NotEmpty.validation}")
-    private String lastName;
-	
+
+	// private String userID;
+
+	@NotEmpty(message = "{NotEmpty.validation}")
+	private String firstName;
+
+	@NotEmpty(message = "{NotEmpty.validation}")
+	private String lastName;
 
 	@Column(name = "email")
 	@NotEmpty(message = "{NotEmpty}")
-    private String email;
-    
-	@Valid
-    @OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="address_id") 
-    private Address address;
-	
-	@Valid
-	@OneToOne(fetch=FetchType.EAGER,  cascade = CascadeType.ALL) 
-	@JoinColumn(name="username") 
-	private UserCredential userCredentials;
-	
-	@OneToMany(mappedBy="user",fetch=FetchType.EAGER,  cascade = CascadeType.ALL)
-	private List<Booking> booking;
-	
+	private String email;
 
-    public UserCredential getUserCredential() {
+	@Valid
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id")
+	private Address address;
+
+	@Valid
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "username", nullable = true, unique = true)
+	private UserCredential userCredentials;
+
+	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Booking> booking;
+
+	public UserCredential getUserCredentials() {
+		return userCredentials;
+	}
+
+	public void setUserCredentials(UserCredential userCredentials) {
+		this.userCredentials = userCredentials;
+	}
+
+	public List<Booking> getBooking() {
+		return booking;
+	}
+
+	public void setBooking(List<Booking> booking) {
+		this.booking = booking;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	public UserCredential getUserCredential() {
 		return userCredentials;
 	}
 
@@ -67,22 +85,19 @@ public class User implements Serializable {
 		this.userCredentials = userCredentials;
 	}
 
-	public User() {}
+	public User() {
+	}
 
-    public User(String firstName, String lastName, Address address, String userName, String password) {
+	public User(String firstName, String lastName, Address address, String userName, String password) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
-		
+
 	}
-    
-    
 
 	public Long getUserId() {
 		return userId;
 	}
-
-
 
 	public String getEmail() {
 		return email;
@@ -97,22 +112,21 @@ public class User implements Serializable {
 		this.lastName = lastName;
 	}
 
-    public String getFirstName() {
-        return firstName;
-    }
+	public String getFirstName() {
+		return firstName;
+	}
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-    public String getLastName() {
-        return lastName;
-    }
+	public String getLastName() {
+		return lastName;
+	}
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
 	public Address getAddress() {
 		return address;
@@ -122,5 +136,4 @@ public class User implements Serializable {
 		this.address = address;
 	}
 
-	
 }

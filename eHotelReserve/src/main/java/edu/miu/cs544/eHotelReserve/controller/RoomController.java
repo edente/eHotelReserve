@@ -31,12 +31,16 @@ public class RoomController {
 	private IRoomTypeService roomTypeService;
 
 	@GetMapping(value = "/")
-	public ModelAndView listRooms() {
-		ModelAndView modelAndView = new ModelAndView();
-		List<Room> rooms = roomService.findAll();
-		modelAndView.addObject("rooms", rooms);
-		modelAndView.setViewName("admin/rooms/rooms");
-		return modelAndView;
+	public String listRooms(Model model) {
+//		ModelAndView modelAndView = new ModelAndView();
+//		List<Room> rooms = roomService.findAll();
+//		modelAndView.addObject("rooms", rooms);
+//		modelAndView.setViewName("admin/rooms/rooms");
+//		return modelAndView;
+		
+	List<Room> rooms = roomService.findAll();
+         model.addAttribute("rooms",rooms);
+		return "admin/rooms/rooms";
 	}
 
 	@GetMapping(value = "/add")
