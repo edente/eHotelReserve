@@ -26,7 +26,7 @@ public class UserCredentialService implements IUserCredentialService{
 	@Autowired
 	RestHttpHeader restHelper;
 
-	String baseUrl = "http://localhost:8080/UserCredentialRest/userCredentials";
+	String baseUrl = "http://localhost:8000/MemberRest/userCredentials";
 	String baseUrlExtended = baseUrl + "/";
 
 	private UserCredential userCredentials  = new UserCredential();	

@@ -61,7 +61,7 @@ public class UserController {
     }
 	
  	@GetMapping("/{id}")
-	public User getUserById(@PathVariable("id") Long id) {
+	public User getUserById(@PathVariable("id") Long id ) {
 		return   userService.findById(id);
  
 	}
@@ -77,6 +77,7 @@ public class UserController {
 	@GetMapping(value = "/edit/{userId}")
     public User editUserForm(@PathVariable("userId") Long userId) {
 		User user = userService.findById(userId);
+		System.out.println("user id ***** "+userId);
         return user;
     }
 	

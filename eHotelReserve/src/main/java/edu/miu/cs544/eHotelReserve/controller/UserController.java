@@ -60,6 +60,7 @@ public class UserController {
 	@GetMapping(value = "/edit/{userId}")
 	public String editUserForm(@PathVariable("userId") Long userId, Model model) {
 		User user = userService.findById(userId);
+		System.out.println("**** this is userin user edit "+user + " user id "+userId);
 		if (user != null) {
 			model.addAttribute("user", user);
 			return "user/users/edituserform";

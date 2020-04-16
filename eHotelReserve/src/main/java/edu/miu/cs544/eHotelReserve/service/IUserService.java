@@ -12,7 +12,7 @@ public interface IUserService {
 	
 	List<User>findAll();
 	void save(User user);
-	User findById(Long uId);
+	User findById(Long id);
 	//void delete(Long uId);
 
 }

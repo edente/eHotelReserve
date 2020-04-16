@@ -52,14 +52,34 @@ public class User implements Serializable {
 	
 	@Valid
 	@OneToOne(fetch=FetchType.EAGER,  cascade = CascadeType.ALL) 
-	@JoinColumn(name="username") 
+	@JoinColumn(name="username", nullable = true, unique = true) 
 	private UserCredential userCredentials;
 	
 	@OneToMany(mappedBy="user",fetch=FetchType.EAGER,  cascade = CascadeType.ALL)
 	private List<Booking> booking;
 	
 
-    public UserCredential getUserCredential() {
+    public UserCredential getUserCredentials() {
+		return userCredentials;
+	}
+
+	public void setUserCredentials(UserCredential userCredentials) {
+		this.userCredentials = userCredentials;
+	}
+
+	public List<Booking> getBooking() {
+		return booking;
+	}
+
+	public void setBooking(List<Booking> booking) {
+		this.booking = booking;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	public UserCredential getUserCredential() {
 		return userCredentials;
 	}
 

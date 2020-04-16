@@ -27,6 +27,8 @@ public class UserService implements IUserService{
 
 	String baseUrl = "http://localhost:8000/MemberRest/hotel/user/users";///hotel/user/users
 	String baseUrlExtended = baseUrl + "/add/save";
+	String baseUrlExtended1 = baseUrl + "/edit/{userId}";
+	
 	
 public List<User> findAll() {
 		
@@ -40,7 +42,7 @@ public List<User> findAll() {
 	public User findById(Long index) {
 		RestTemplate restTemplate = restHelper.getRestTemplate();
 		HttpEntity httpEntity = new HttpEntity(restHelper.getHttpHeaders());
-		ResponseEntity<User> responseEntity = restTemplate.exchange(baseUrlExtended + index, HttpMethod.GET, httpEntity, User.class);	
+		ResponseEntity<User> responseEntity = restTemplate.exchange(baseUrlExtended1 + index, HttpMethod.GET, httpEntity, User.class);	
 		User user = responseEntity.getBody();
  		return user;
 	}
