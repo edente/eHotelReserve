@@ -12,8 +12,6 @@ import org.springframework.web.client.RestTemplate;
 import edu.miu.cs544.eHotelReserve.RestHttpHeader;
 import edu.miu.cs544.eHotelReserve.amqpconfigJava.AmqpConfiguration;
 import edu.miu.cs544.eHotelReserve.model.Booking;
-import edu.miu.cs544.eHotelReserve.model.RoomType;
-import edu.miu.cs544.eHotelReserve.repository.IBookingRepository;
 import edu.miu.cs544.eHotelReserve.service.IBookingService;
 
 

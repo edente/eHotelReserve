@@ -18,7 +18,7 @@ public class MemberRestBootApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MemberRestBootApplication.class, args);
-	}
+	} 
 
 	 @Bean
 	  public DozerBeanMapper dozerBean() {

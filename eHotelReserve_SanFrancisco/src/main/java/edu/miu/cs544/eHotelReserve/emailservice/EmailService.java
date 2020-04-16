@@ -58,8 +58,8 @@ public class EmailService {
 		// Send email
 		this.mailSender.send(mimeMessage);
 
-		 System.out.println("\n-------- Confirmation Email Sent to " +
-		 booking.getUser().getAddress().getEmail());
+		 System.out.println("\n-------- Confirmation Email Sent");
+//		 booking.getUser().getAddress().getEmail());
 
 	}
 
