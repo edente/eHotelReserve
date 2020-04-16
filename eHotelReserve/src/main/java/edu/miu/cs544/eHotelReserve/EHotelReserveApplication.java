@@ -34,38 +34,38 @@ public class EHotelReserveApplication {
 	}
 	
 	
-	public void run(String... args) throws Exception {
-		 BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-	        System.out.println();
-	     System.out.print("*************HIT RETURN send message to sanfrasisco*********************::   ");
-	      System.out.println();
-	        try {
-				in.readLine();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-       AnnotationConfigApplicationContext context =new AnnotationConfigApplicationContext(AmqpConfiguration.class);
-		// Put booking into Spring Integration through OrderGateway
-       
-       Address address1= new Address("111","san","tx","1234","s@g","123456789");
-       User user1= new User("selam","Gd",address1,"sel","1234");
-       RoomType roomType1= new RoomType("11","master",100.00,null);
-       Room room1= new Room("11",roomType1);
-       Payment payment1= new Payment(user1,null,"card",12341234L,345,100.00,"paid");
-
-       Booking newBooking= new Booking(1L,"11",null,null,null,200.00,"SanFrancisco",user1,room1,payment1);
-		bookingService.publish(newBooking, context);
-    	
-    	try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	     System.out.print("*************HIT RETURN send message to sanfrasisco*********************::   ");
-
-	}
+//	public void run(String... args) throws Exception {
+//		 BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+//	        System.out.println();
+//	     System.out.print("*************HIT RETURN send message to sanfrasisco*********************::   ");
+//	      System.out.println();
+//	        try {
+//				in.readLine();
+//			} catch (IOException e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			}
+//       AnnotationConfigApplicationContext context =new AnnotationConfigApplicationContext(AmqpConfiguration.class);
+//		// Put booking into Spring Integration through OrderGateway
+//       
+//       Address address1= new Address("111","san","tx","1234","ruftaea@gmail.com","123456789");
+//       User user1= new User("selam","Gd",address1,"sel","1234");
+//       RoomType roomType1= new RoomType("11","master",100.00,null);
+//       Room room1= new Room("11",roomType1);
+//       Payment payment1= new Payment(user1,null,"card",12341234L,345,100.00,"paid");
+//
+//       Booking newBooking= new Booking(1L,"11",null,null,null,200.00,"SanFrancisco",user1,room1,payment1);
+//		bookingService.publish(newBooking, context);
+//    	
+//    	try {
+//			Thread.sleep(1000);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	     System.out.print("*************HIT RETURN send message to sanfrasisco*********************::   ");
+//
+//	}
 	@Bean
 	public MessageSource messageSource() {
 	    ReloadableResourceBundleMessageSource messageSource

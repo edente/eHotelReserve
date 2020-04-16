@@ -62,9 +62,10 @@ public class BookingService implements IBookingService{
 			RabbitTemplate rabbitTemplate = context.getBean("bookingTemplateLasVegas",RabbitTemplate.class);
 			rabbitTemplate.convertAndSend(newBooking);
 		}
-		System.out.println("\n-------- New Booking Sent to " + newBooking.getHotelReserveLocation() + " Branch Queue on Rabbitmq");
-		System.out.println("-------- Booking Reference Number: " + newBooking.getReferenceNumber());
-		System.out.println("-------- Customer's Full Name    : " + newBooking.getUser().getFirstName() + " " + newBooking.getUser().getLastName() + "\n");
+		System.out.println("\n------New Booking Sent to " + newBooking.getHotelReserveLocation() + " Branch Queue on Rabbitmq");
+		System.out.println("--------Booking Reference Number: " + newBooking.getReferenceNumber());
+		System.out.println("--------Booking email: " + newBooking.getUser().getAddress().getEmail());
+		System.out.println("--------Customer's Full Name    : " + newBooking.getUser().getFirstName() + " " + newBooking.getUser().getLastName() + "\n");
 	}
 
 

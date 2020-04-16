@@ -1,5 +1,6 @@
 package edu.miu.cs544.eHotelReserve.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -16,7 +17,7 @@ import javax.persistence.Table;
  
 @Entity
 @Table(name = "userCredentials")
-public class UserCredential {
+public class UserCredential implements Serializable {
 
 	 @Id
 	 @Column(name = "username", nullable = false, unique = true)

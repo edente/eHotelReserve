@@ -11,7 +11,7 @@ import edu.miu.cs544.eHotelReserve.model.RoomType;
 import edu.miu.cs544.eHotelReserve.service.IRoomTypeService;
 
 
-@RestController("/admin")
+@RestController
 public class RoomTypeController {
 	
 	@Autowired
@@ -20,6 +20,7 @@ public class RoomTypeController {
 	@GetMapping(value = {"hotel/admin/roomTypes","roomType/all"})
     public List<RoomType> manageCategories() {
         return roomTypeService.getRoomTypeList();
+        
     }
 	
 //	@GetMapping(value = "/add")

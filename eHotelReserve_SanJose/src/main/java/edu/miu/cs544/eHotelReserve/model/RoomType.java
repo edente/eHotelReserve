@@ -18,6 +18,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "roomTypes")
 public class RoomType {
 	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="roomtype_id")

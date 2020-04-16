@@ -20,8 +20,8 @@ public class AmqpConfiguration {
 	    @Bean
 	    public ConnectionFactory connectionFactory() {
 	    	CachingConnectionFactory connectionFactory = new CachingConnectionFactory("localhost");
-	    	connectionFactory.setUsername("guest");
-	    	connectionFactory.setPassword("guest");
+	    	connectionFactory.setUsername("joe");
+	    	connectionFactory.setPassword("joe");
 	        return connectionFactory;
 	    }
 	    
@@ -32,7 +32,7 @@ public class AmqpConfiguration {
 	    
 	    @Bean
 		Queue queueSanFrancisco() {
-			return new Queue("bookingQueueSanfrancisco", true);
+			return new Queue("bookingQueueSanFrancisco", true);
 		}
 	    
 	    @Bean
@@ -70,7 +70,7 @@ public class AmqpConfiguration {
 	    @Bean
 	    public RabbitTemplate bookingTemplateSanFrancisco() {
 	        RabbitTemplate bookingTemplate= new RabbitTemplate(connectionFactory());
-	        bookingTemplate.setDefaultReceiveQueue("orderOnlineQueue");
+	        bookingTemplate.setDefaultReceiveQueue("bookingQueueSanFrancisco");
 	        bookingTemplate.setRoutingKey("booking.SanFrancisco");
 	        bookingTemplate.setExchange("bookingDirectExchange");
 	        bookingTemplate.setReplyTimeout(2000);
