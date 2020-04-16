@@ -14,6 +14,9 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "roomTypes")
 public class RoomType {
@@ -28,7 +31,8 @@ public class RoomType {
 	
 	@NotNull
 	private Double price;
-	
+//	 @JsonManagedReference()
+	 @JsonBackReference()
 	@OneToMany(mappedBy = "roomType", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Room> rooms;
 	

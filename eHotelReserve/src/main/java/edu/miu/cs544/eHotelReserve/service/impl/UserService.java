@@ -11,9 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import edu.miu.cs544.eHotelReserve.RestHttpHeader;
 import edu.miu.cs544.eHotelReserve.model.User;
 import edu.miu.cs544.eHotelReserve.repository.IUserRepository;
-import edu.miu.cs544.eHotelReserve.rest.RestHttpHeader;
 import edu.miu.cs544.eHotelReserve.service.IUserService;
 
 
