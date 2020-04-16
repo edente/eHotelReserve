@@ -5,14 +5,14 @@
 	<th:block layout:fragment="header"></th:block>
     <th:block layout:fragment="content">
 		<h3>NEW USER FORM</h3>
-    	<form id="userForm" method="post" action="/company/user/users/add/save" th:object="${user}">
+    	<form id="userForm" method="post" action="/hotel/user/users/add/save" th:object="${user}">
             <fieldset>
-                <input type="hidden" name="userId" th:value="${user.userId}" />
+                 <input type="hidden" name="userId" th:value="${user.userId}" />
                 <div style="float:right;">
-                    <a href="/company/user/users" class="btn btn-outline-warning">Cancel</a>&nbsp;&nbsp;&nbsp;
-                    <a th:href="@{'/company/user/users/delete/' + ${user.userId}}" class="btn btn-outline-warning">Delete</a>&nbsp;&nbsp;&nbsp;
+                    <a href="/hotel/user/users" class="btn btn-outline-warning">Cancel</a>&nbsp;&nbsp;&nbsp;
+                    <a th:href="@{'/hotel/user/users/delete/' + ${user.userId}}" class="btn btn-outline-warning">Delete</a>&nbsp;&nbsp;&nbsp;
                     <button id="btnSubmit" type="submit" class="btn btn-outline-success">Update</button>
-                </div>
+                </div> 
                 <br></br>
                 <div class="form-group">               
 					<label for="firstName">First Name</label>
@@ -26,18 +26,53 @@
                     <input id="lastName" name="lastName" type="text" class="form-control" th:value="${user.lastName}">              
                 </div>
                 
-                <div class="form-group">
-                	<label for="dateOfBirth">Date Of Birth</label>
-                   	<span th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}" class="alert alert-danger"></span>
-                    <input id="dateOfBirth" name="dateOfBirth" type="date" class="form-control" th:value="${user.dateOfBirth}">
-                </div>
+        
                 
                 <div class="form-group">
-                	<label for="licenseNumber">License Number</label>
-                   	<span th:if="${#fields.hasErrors('licenseNumber')}" th:errors="*{licenseNumber}" class="alert alert-danger"></span>
-                    <input id="licenseNumber" name="licenseNumber" type="text" class="form-control" th:value="${user.licenseNumber}">
-                </div>              
+                	<label for="email">email</label>
+                   	<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="alert alert-danger"></span>
+                    <input id="email" name="email" type="text" class="form-control" th:value="${user.email}">
+                </div> 
+                
+                  </div>
+                    <div style="float:right;">
+                        <button id="btnReset" type="reset" class="btn btn-outline-info" style="margin-right: 2em;">
+                            Reset
+                        </button>
+                        <a href="/hotel/user/users" class="btn btn-outline-warning"
+                           style="margin-right: 2em;">Cancel</a>
+                           
+                        <button id="btnSubmit" type="submit" class="btn btn-outline-primary">Register User</button>
+                    </div>             
             </fieldset>
+             <!-- 
+         <h3>Address Details</h3>
+            
+              <fieldset>
+                <input type="hidden" name="user.address.id" th:value="${user.address.id}" /> 
+                
+                 <br></br>
+                <div class="form-group">               
+					<label for="street">Street</label>
+                    <span th:if="${#fields.hasErrors('street')}" th:errors="*{adress.street}" class="alert alert-danger"></span>
+                    <input id="address.street" name="street" type="text" class="form-control" th:value="${user.address.street}">              
+                </div>   
+                
+              <!--   <div class="form-group">               
+					<label for="city">City</label>
+                    <span th:if="${#fields.hasErrors('city')}" th:errors="*{city}" class="alert alert-danger"></span>
+                    <input id="city" name="city" type="text" class="form-control" th:value="${user.address.city}">              
+                </div>
+                
+        --> 
+                
+             <!--   <div class="form-group">
+                	<label for="email">email</label>
+                   	<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="alert alert-danger"></span>
+                    <input id="email" name="email" type="text" class="form-control" th:value="${user.email}">
+                </div>              
+             </fieldset> 
+            -->
         </form>
     </th:block>
     <th:block layout:fragment="footer"></th:block>

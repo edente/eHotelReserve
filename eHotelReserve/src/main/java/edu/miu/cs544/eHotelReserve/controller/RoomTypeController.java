@@ -58,13 +58,15 @@ public class RoomTypeController {
 	
 	@GetMapping(value = "/add")
     public String newCategoryForm(Model model) {
-        model.addAttribute("roomTypes", new RoomType());
+        model.addAttribute("roomType", new RoomType());
         return "admin/roomTypes/newroomTypesform";
     }
 	
 	@PostMapping(value = "/add/save")
     public String addNewCategory(@Valid @ModelAttribute("roomType") RoomType roomType,
         BindingResult bindingResult, Model model) {
+		System.out.println("==================================================");
+		System.out.println("roomytpe"+roomType.getRoomTypeName());
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getAllErrors());
             return "admin/roomTypes/newroomTypesform";

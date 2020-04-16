@@ -5,6 +5,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 
+import edu.miu.cs544.eHotelReserve.amqpconfigJava.AmqpConfiguration;
 import edu.miu.cs544.eHotelReserve.model.Booking;
 import edu.miu.cs544.eHotelReserve.service.IBookingService;
 
@@ -51,7 +52,7 @@ public class BookingService implements IBookingService{
 
 	@Override
 	public void publish(Booking newBooking, AnnotationConfigApplicationContext context) {
-		//AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AmqpConfiguration.class);
+		AnnotationConfigApplicationContext context1 = new AnnotationConfigApplicationContext(AmqpConfiguration.class);
 		if(newBooking.getHotelReserveLocation().equals("SanFrancisco")) {
 			RabbitTemplate rabbitTemplate = context.getBean("bookingTemplateSanFrancisco",RabbitTemplate.class);
 			rabbitTemplate.convertAndSend(newBooking);

@@ -17,6 +17,10 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 @Entity
 @Table(name = "rooms")
@@ -26,7 +30,7 @@ public class Room {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-
+ 
 	@Column(name = "room_number")
 	@NotEmpty
 	private String roomNumber;
@@ -35,6 +39,8 @@ public class Room {
 	@ManyToOne
 	@JoinColumn(name="roomType_id", nullable = false)
 	@NotNull
+//	@JsonBackReference()
+	 @JsonManagedReference()
     private RoomType roomType;
     
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)

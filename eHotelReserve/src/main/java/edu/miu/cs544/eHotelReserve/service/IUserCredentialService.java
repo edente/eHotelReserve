@@ -8,9 +8,10 @@ import edu.miu.cs544.eHotelReserve.model.UserCredential;
 public interface IUserCredentialService {
 	
 	List<UserCredential>findAll();
-	UserCredential save(UserCredential userCredential);
+	void save(UserCredential userCredential);
 //	UserCredential findById(Long ucId);
 	UserCredential findByUserName(String userName);
+	
 //	void delete(Long ucId);
 
 }

@@ -24,7 +24,7 @@ public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long userId;
 	
 	//private String userID;
 	
@@ -63,14 +63,18 @@ public class User {
 
 	public User() {}
 
-    public User(String firstName, String lastName, Address address, String userName, String password) {
+    
+    
+    
+
+	public User( String firstName,
+			String lastName,
+			 String email) {
+		
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.address = address;
-		
+		this.email = email;
 	}
-    
-    
 
 	public User(String firstName, String lastName) {
 		this.firstName = firstName;
@@ -94,12 +98,50 @@ public class User {
     }
 
 
+	public long getId() {
+		return userId;
+	}
+
+	public void setId(long id) {
+		this.userId = id;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public UserCredential getUserCredentials() {
+		return userCredentials;
+	}
+
+	public void setUserCredentials(UserCredential userCredentials) {
+		this.userCredentials = userCredentials;
+	}
+
+	public List<Booking> getBooking() {
+		return booking;
+	}
+
+	public void setBooking(List<Booking> booking) {
+		this.booking = booking;
+	}
+
 	public Address getAddress() {
 		return address;
 	}
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", address=" + address + ", userCredentials=" + userCredentials + ", booking=" + booking + "]";
 	}
 
 	

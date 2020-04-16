@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
  
@@ -26,9 +27,12 @@ public class UserCredential implements Serializable {
 	 @Column(name = "PASSWORD", nullable = false)
 	String password;
 	
-	String verifyPassword;
+	String matchingPassword;
 	
 	Boolean enabled;
+	
+	@OneToOne(mappedBy = "userCredentials", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	User user;
 	
  	public String getUsername() {
 		return username;
@@ -36,18 +40,26 @@ public class UserCredential implements Serializable {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	public String getMatchingPassword() {
+		return matchingPassword;
+	}
+	public void setMatchingPassword(String matchingPassword) {
+		this.matchingPassword = matchingPassword;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
 	public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getVerifyPassword() {
-		return verifyPassword;
-	}
-	public void setVerifyPassword(String verifyPassword) {
-		this.verifyPassword = verifyPassword;
-	}
+	
 	public Boolean getEnabled() {
 		return enabled;
 	}

@@ -3,37 +3,36 @@
 	xmlns:th="http://www.thymeleaf.org">
 <body>
 	<th:block layout:fragment="header">
-		<span style="float:right;" class="text-muted">Logged in as: testmail@company.com</span>
+		<span style="float:right;" class="text-muted">Logged in as: rufta@company.com</span>
 		<br>
-		<a class="btn btn-outline-success" style="float:right" href="/company/page/underconstruction">LOG OUT</a>
-		<a class="btn btn-outline-success" style="float:right" href=/company/page/underconstruction>Manage Your Account</a>
-		<a class="btn btn-outline-success" style="float:left" href="/company/admin/home">ADMIN HOME</a>
+		<a class="btn btn-outline-success" style="float:right" href="/hotel/admin/underconstruction">LOG OUT</a>
+		<a class="btn btn-outline-success" style="float:right" href=/hotel/admin/underconstruction>Manage Payments</a>
+		<a class="btn btn-outline-success" style="float:left" href="/hotel/admin/home">ADMIN HOME</a>
 		<br/><br/>
 		<hr style = "background:green">
 	</th:block>
     <th:block layout:fragment="content">
-		<a>U S E R E S</a>
-		<a style="float:right;" href="/company/user/users/add">ADD NEW USER</a>
-		<a style="float:right; padding-right: 2em;" href="/company/user/users">MANAGE USERS</a>
+		<a>U S E R S</a>
+		<a style="float:right;" href="/hotel/user/users/add/save">ADD NEW USER</a>
+		<a style="float:right; padding-right: 2em;" href="/hotel/user/users">MANAGE USERS</a>
 		<br></br>
     	<table class="table table-striped">
 			<thead>
 				<th scope="col">No.</th>
 				<th>First Name</th>
 				<th>Last Name</th>
-				<th>Date Of Birth</th>
-				<th>License Number</th>
+				<th>Email</th>
+				
 			</thead>
 			<tbody>
 				<tr th:each="user, rowNumbering : ${users}">
 					<td scope="row" th:text="${rowNumbering.count}+'.'"></td>
 					<td th:text="${user.firstName}"></td>
 					<td th:text="${user.lastName}"></td>
-					<td th:text="${user.dateOfBirth}"></td>
-					<td th:text="${user.licenseNumber}"></td>
+					<td th:text="${user.email}"></td>
 					<td>
-						<a th:href="@{'/company/user/users/edit/' + ${user.userId}}" class="btn btn-outline-success">Edit</a>
-						<a th:href="@{'/company/user/users/delete/' + ${user.userId}}" class="btn btn-outline-warning">Delete</a>
+						<a th:href="@{'/hotel/user/users/edit/' + ${user.userId}}" class="btn btn-outline-success">Edit</a>
+						<a th:href="@{'/hotel/user/users/delete/' + ${user.userId}}" class="btn btn-outline-warning">Delete</a>
 					</td>
 				</tr>
 			</tbody>
