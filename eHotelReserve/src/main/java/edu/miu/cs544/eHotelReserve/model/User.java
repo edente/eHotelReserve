@@ -88,11 +88,11 @@ public class User implements Serializable {
 	public User() {
 	}
 
-	public User(String firstName, String lastName, Address address, String userName, String password) {
+	public User(String firstName, String lastName, Address address, String userName, String password, String email) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
-
+		this.email=email;
 	}
 
 	public Long getUserId() {

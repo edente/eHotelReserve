@@ -40,6 +40,14 @@ public class User implements Serializable {
 	@NotEmpty(message = "{NotEmpty}")
     private String email;
     
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	@Valid
     @OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="address_id") 

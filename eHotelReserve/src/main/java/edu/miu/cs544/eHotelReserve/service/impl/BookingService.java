@@ -2,6 +2,7 @@ package edu.miu.cs544.eHotelReserve.service.impl;
 
 import java.util.List;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Component;
@@ -11,8 +12,6 @@ import org.springframework.web.client.RestTemplate;
 import edu.miu.cs544.eHotelReserve.RestHttpHeader;
 import edu.miu.cs544.eHotelReserve.amqpconfigJava.AmqpConfiguration;
 import edu.miu.cs544.eHotelReserve.model.Booking;
-import edu.miu.cs544.eHotelReserve.model.RoomType;
-import edu.miu.cs544.eHotelReserve.repository.IBookingRepository;
 import edu.miu.cs544.eHotelReserve.service.IBookingService;
 
 

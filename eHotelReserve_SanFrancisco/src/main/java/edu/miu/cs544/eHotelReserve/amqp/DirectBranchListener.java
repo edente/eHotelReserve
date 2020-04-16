@@ -15,7 +15,7 @@ public class DirectBranchListener {
 
 	public void listen(Booking booking) throws MessagingException {
 		String name = booking.getUser().getFirstName();
-		String email = booking.getUser().getAddress().getEmail();
+		String email = booking.getUser().getEmail();
 		String documentName = "eHotelReceipt.docx";
 		
 		System.out.println("-------- Customer's Full Name    : " + booking.getUser().getFirstName() + " "
