@@ -28,13 +28,7 @@ public class Address {
 	@NotEmpty(message="{NotEmpty.validation}")
 	@Size(min = 5, max = 5, message="{Size.validation.stateandzip}")
     private String zipCode;
-	
-	@NotEmpty(message="{NotEmpty.validation}")
-	@Email(message="{Email.validation}")
-    private String email;
-	
-	@NotEmpty(message="{NotEmpty.validation}")
-    private String phone;
+
 
     public Address() {}
 
@@ -43,10 +37,13 @@ public class Address {
 		this.city = city;
 		this.state = state;
 		this.zipCode = zip;
-		this.email = email;
-		this.phone = phone;
+		
 	}
 
+
+	public Long getId() {
+		return id;
+	}
 
 	public String getZipCode() {
 		return zipCode;
@@ -88,20 +85,5 @@ public class Address {
 		this.zipCode = zip;
 	}
 
-	public String getEmail() {
-		return email;
-	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-    
 }

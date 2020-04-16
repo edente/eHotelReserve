@@ -25,8 +25,8 @@ public class UserService implements IUserService{
 	@Autowired
 	RestHttpHeader restHelper;
 
-	String baseUrl = "http://localhost:8080/UserRest/users";
-	String baseUrlExtended = baseUrl + "/";
+	String baseUrl = "http://localhost:8000/MemberRest/hotel/user/users";///hotel/user/users
+	String baseUrlExtended = baseUrl + "/add/save";
 	
 public List<User> findAll() {
 		
@@ -56,7 +56,7 @@ public List<User> findAll() {
 	public void save(User user) {
 		RestTemplate restTemplate = restHelper.getRestTemplate();
 		HttpEntity<User> httpEntity = new HttpEntity<User>(user, restHelper.getHttpHeaders());
-		user = restTemplate.postForObject(baseUrl, httpEntity, User.class);
+		user = restTemplate.postForObject(baseUrlExtended, httpEntity, User.class);
 		return;
 	}
 	

@@ -33,7 +33,7 @@ import edu.miu.cs544.eHotelReserve.service.IUserService;
 
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/hotel/user/users")
 public class UserController {
 	
 	
@@ -52,7 +52,11 @@ public class UserController {
 	
 	@GetMapping(value = {"","/all"})
     public List<User> getUsers() {
-        return userService.findAll();
+		System.out.println("****I am in the list of users******");
+		List<User> users =  userService.findAll();
+		System.out.println(users);
+		return userService.findAll();
+        
 
     }
 	
@@ -62,7 +66,7 @@ public class UserController {
  
 	}
 	
-	@PostMapping(value = "/save")
+	@PostMapping(value = "/add/save")
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void addNewUser(@RequestBody User user) {
         userService.save(user);

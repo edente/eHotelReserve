@@ -9,9 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import edu.miu.cs544.eHotelReserve.RestHttpHeader;
+
 import edu.miu.cs544.eHotelReserve.model.RoomType;
 import edu.miu.cs544.eHotelReserve.repository.IRoomTypeRepository;
+import edu.miu.cs544.eHotelReserve.rest.RestHttpHeader;
 import edu.miu.cs544.eHotelReserve.service.IRoomTypeService;
 
 @Component("roomTypeService")

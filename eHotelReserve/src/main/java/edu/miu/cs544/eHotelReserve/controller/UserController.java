@@ -15,24 +15,36 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import edu.miu.cs544.eHotelReserve.model.Address;
 import edu.miu.cs544.eHotelReserve.model.User;
 import edu.miu.cs544.eHotelReserve.service.IUserService;
 
 @RequestMapping("/hotel/user/users")
 @Controller
+
 public class UserController {
 
 	@Autowired
 	private IUserService userService;
 
-	@GetMapping(value = "/")
-	public ModelAndView manageCategories() {
+	@GetMapping(value = "")
+	public ModelAndView manageUsers() {
+		System.out.println("****in the list of users****");
 		ModelAndView modelAndView = new ModelAndView();
 		List<User> users = userService.findAll();
 		modelAndView.addObject("users", users);
 		modelAndView.setViewName("user/users/users");
 		return modelAndView;
 	}
+	
+	@GetMapping(value = "/add")
+    public String newUserForm(Model model) {
+		User user = new User();
+		Address address=user.getAddress();
+        model.addAttribute("user", user);
+        model.addAttribute("address",address);
+        return "user/users/newuserform";
+    }
 
 	@PostMapping(value = "/add/save")
 	public String addNewUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
@@ -40,6 +52,7 @@ public class UserController {
 			model.addAttribute("errors", bindingResult.getAllErrors());
 			return "user/users/newuserform";
 		}
+		System.out.println("come to save******");
 		 userService.save(user);
 		return "redirect:/hotel/user/users";
 	}
