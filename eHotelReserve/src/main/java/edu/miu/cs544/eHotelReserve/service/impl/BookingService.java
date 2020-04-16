@@ -80,7 +80,7 @@ System.out.println(booking.getReferenceNumber());
 		}
 		System.out.println("\n------New Booking Sent to " + newBooking.getHotelReserveLocation() + " Branch Queue on Rabbitmq");
 		System.out.println("--------Booking Reference Number: " + newBooking.getReferenceNumber());
-		System.out.println("--------Booking email: " + newBooking.getUser().getAddress().getEmail());
+		System.out.println("--------Booking email: " + newBooking.getUser().getEmail());
 		System.out.println("--------Customer's Full Name    : " + newBooking.getUser().getFirstName() + " " + newBooking.getUser().getLastName() + "\n");
 	}
 
