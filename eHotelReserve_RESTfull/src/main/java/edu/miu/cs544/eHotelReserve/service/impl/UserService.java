@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import edu.miu.cs544.eHotelReserve.dao.IUserDao;
 import edu.miu.cs544.eHotelReserve.model.User;
 import edu.miu.cs544.eHotelReserve.service.IUserService;
+import edu.miu.cs544.eHotelReserve.validation.ServiceValidation;
 
 @Service("userService")
 @Transactional
@@ -27,7 +28,7 @@ public class UserService implements IUserService{
 	public List<User> findAll() {
 		return userDao.findAll();
 	}
-
+@ServiceValidation
 	@Override
 	public void save(User user) {
 		userDao.save(user);
