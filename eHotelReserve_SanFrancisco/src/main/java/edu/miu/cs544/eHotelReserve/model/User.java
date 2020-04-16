@@ -48,7 +48,7 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-	@Valid
+//	@Valid
     @OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="address_id") 
     private Address address;

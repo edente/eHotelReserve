@@ -19,7 +19,7 @@ public class DirectBranchListener {
 		String documentName = "eHotelReceipt.docx";
 		
 		System.out.println("-------- Customer's Full Name    : " + booking.getUser().getFirstName() + " "
-				+ booking.getUser().getLastName() + "\n");
+				+ booking.getUser().getLastName() + "\n" +booking.getUser().getAddress().getState());
 		 System.out.println("\n-------- New Booking Message Received from " +
 		 booking.getHotelReserveLocation() + " Branch Queue on Rabbitmq");
 		System.out.println("-------- Sending Confirmation Email to Customer to " + email + "\n");

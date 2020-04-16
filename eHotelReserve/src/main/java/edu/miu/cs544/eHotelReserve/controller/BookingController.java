@@ -163,7 +163,7 @@ public class BookingController {
 //			model.addAttribute("errors", bindingResult.getAllErrors());
 //			return "public/book/bookingform";
 //		}
-		System.out.println("Im in here==== "+booking.getReferenceNumber());
+		
 //		booking = bookingService.save(booking);
 		
 		//sample booking
@@ -175,12 +175,14 @@ public class BookingController {
 	    Payment payment1= new Payment(user1,null,"card",12341234L,345,100.00,"paid");
 
 	    Booking newBooking= new Booking(1L,"11",null,null,null,200.00,"SanFrancisco",user1,room1,payment1);
-			bookingService.publish(newBooking, context);
 		
 		//end sample
 			
 			bookingService.publish(newBooking, context);
-		return "redirect:/hotel/public/bookings/success";
+			System.out.println("After publish ***********");
+			
+//		return "redirect:/hotel/public/bookings/success";
+		return "public/book/confirmation";
 	}
 
 	@GetMapping(value = "/hotel/public/bookings/success")
