@@ -32,7 +32,6 @@ public class RoomTypeController {
 	
 	@PostMapping(value = "roomTypes/save")
     public void addNewRoomType(@RequestBody RoomType roomType) {
-
      roomTypeService.saveRoomType(roomType);
         
     }
