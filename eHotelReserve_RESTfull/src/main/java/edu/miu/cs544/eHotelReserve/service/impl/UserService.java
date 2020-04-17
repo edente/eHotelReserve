@@ -10,17 +10,24 @@ import org.springframework.transaction.annotation.Transactional;
 
 import edu.miu.cs544.eHotelReserve.dao.IUserDao;
 import edu.miu.cs544.eHotelReserve.model.User;
+import edu.miu.cs544.eHotelReserve.service.ICredentialService;
 import edu.miu.cs544.eHotelReserve.service.IUserService;
+
 
 @Service("userService")
 @Transactional
 public class UserService implements IUserService{
-	
+
 	private IUserDao userDao;
 	
+	
+ 	ICredentialService credentialsService;
+	
 	@Autowired
-	public UserService(IUserDao userDao) {
+	public UserService(IUserDao userDao, ICredentialService credentialsService) {
+		
 		this.userDao = userDao;
+		this.credentialsService = credentialsService;
 	}
 
 	@Override
@@ -30,6 +37,7 @@ public class UserService implements IUserService{
 
 	@Override
 	public void save(User user) {
+		//credentialsService.save(user.getUserCredentials());
 		userDao.save(user);
 	}
 

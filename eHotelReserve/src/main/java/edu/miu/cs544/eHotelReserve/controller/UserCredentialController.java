@@ -34,7 +34,7 @@ public class UserCredentialController {
 	}
 
 	@PostMapping(value = "/registration")
-	public String addNewUser(@Valid @ModelAttribute("userCredential") UserCredential userCredential,
+	public String addNewUserCredential(@Valid @ModelAttribute("userCredential") UserCredential userCredential,
 							 BindingResult bindingResult, Model model) {
 		System.out.println("registration start");
 		if (bindingResult.hasErrors()) {
@@ -43,7 +43,7 @@ public class UserCredentialController {
 			return "credential/registration";
 		}
 		 userCredentialService.save(userCredential);
-		return "redirect:/hotel/credential/login";
+		return "Forward:/hotel/credential/login";
 	}
 
 	@GetMapping(value = "/login")

@@ -21,10 +21,9 @@ public class RestHttpHeader {
 	public RestTemplate getRestTemplate() {
 		return this.restTemplate;
 	}
-
-	/*
-	 * Set up authentication header PLUS JSON Accept header
-	 */
+	
+	 //Set up authentication header PLUS JSON Accept header
+	
 	public HttpHeaders getHttpHeaders() {
 
 		HttpHeaders requestHeaders = new HttpHeaders();

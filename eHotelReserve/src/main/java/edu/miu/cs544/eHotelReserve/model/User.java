@@ -23,9 +23,7 @@ import javax.validation.constraints.Size;
 @Table(name="users")
 public class User implements Serializable {
 	
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -58,7 +56,7 @@ public class User implements Serializable {
 	@OneToMany(mappedBy="user",fetch=FetchType.EAGER,  cascade = CascadeType.ALL)
 	private List<Booking> booking;
 	
-
+	
     public UserCredential getUserCredentials() {
 		return userCredentials;
 	}
