@@ -25,11 +25,9 @@ public class EmailService {
 
 	@Autowired
 	private SpringTemplateEngine springTemplateEngine;
-	
-	//final String recipientEmail,
-	public void sendBookingConfirmationMail(
-			final String recipientName,  Booking booking, String documentName, final Locale locale)
-			throws MessagingException {
+
+	public void sendBookingConfirmationMail(final String recipientName, final String recipientEmail, Booking booking,
+			String documentName, final Locale locale) throws MessagingException {
 
 		// Prepare the Thymeleaf evaluation context
 		final Context thymeContext = new Context(locale);
@@ -42,7 +40,7 @@ public class EmailService {
 		message.setSubject("Reservation Details");
 
 		// could have CC, BCC, will also take an array of Strings
-		//message.setTo(recipientEmail);
+		// message.setTo(recipientEmail);
 
 		// Create the HTML body using Thymeleaf..template is orderReceivedMail.html
 		final String htmlContent = this.springTemplateEngine.process("bookingReceivedMail", thymeContext);
@@ -54,8 +52,9 @@ public class EmailService {
 
 		// Send email
 		this.mailSender.send(mimeMessage);
-		
-		//System.out.println("\n-------- Confirmation Email Sent to " + booking.getEmail());
+
+		// System.out.println("\n-------- Confirmation Email Sent to " +
+		// booking.getEmail());
 
 	}
 

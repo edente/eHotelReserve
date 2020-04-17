@@ -12,23 +12,22 @@ import java.util.Locale;
 
 public class DirectBranchListener {
 
-	public void listen(Booking booking) throws MessagingException {
 
-		//System.out.println("\n-------- New Booking Message Received from " + booking.getPickUpLocation() + " Branch Queue on Rabbitmq");
-		//System.out.println("-------- Booking Reference Number: " + booking.getReferenceNumber());
-		//System.out.println("-------- Sending Confirmation Email to Customer on " + booking.getEmail() + "\n");
-		System.out.println("-------- Customer's Full Name    : " + booking.getCustomer().getFirstName() + " " + booking.getCustomer().getLastName ()+ "\n");
+		public void listen(Booking booking) throws MessagingException {
+			String name = booking.getUser().getFirstName();
+			String email = booking.getUser().getEmail();
+			String documentName = "eHotelReceipt.docx";
+			
+			System.out.println("-------- Customer's Full Name    : " + booking.getUser().getFirstName() + " "
+					+ booking.getUser().getLastName() + "\n" +booking.getUser().getAddress().getState());
+			 System.out.println("\n-------- New Booking Message Received from " +
+			 booking.getHotelReserveLocation() + " Branch Queue on Rabbitmq");
+			System.out.println("-------- Sending Confirmation Email to Customer to " + email + "\n");
 
-		String name = booking.getCustomer().getFirstName();
-		//String email = booking.getEmail();
-		String documentName = "eHotelReceipt.docx";
+			ApplicationContext context = new ClassPathXmlApplicationContext("context/applicationContext.xml");
 
-		//ApplicationContext context = new ClassPathXmlApplicationContext("context/applicationContext.xml");
+			EmailService emailService = (EmailService) context.getBean("emailService");
+			emailService.sendBookingConfirmationMail(name, email,booking,documentName,new Locale("en"));
 
-		EmailService emailService = new EmailService(); // (EmailService) context.getBean("emailService");
-		emailService.sendBookingConfirmationMail(name,booking,documentName,new Locale("en"));
-
-		//emailService.sendBookingConfirmationMail(name, email,booking,documentName,new Locale("en"));
-
+		}
 	}
-}

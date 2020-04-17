@@ -29,16 +29,16 @@ public class AmqpConfiguration {
 		connectionFactory.setPassword("guest");
 		return connectionFactory;
 	}
-	@Bean
-    public Queue purchasesPhoneQueue() {
-       return new Queue("orderOnlineQueue");
-    }
+//	@Bean
+//    public Queue purchasesPhoneQueue() {
+//       return new Queue("orderOnlineQueue");
+//    }
 
 	@Bean
 	public SimpleMessageListenerContainer directListenerContainer() {
 		SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
 		container.setConnectionFactory(connectionFactory());
-		container.setQueueNames("orderOnlineQueue");//bookingQueueSanJose
+		container.setQueueNames("bookingQueueSanJose");//bookingQueueSanJose
 		container.setMessageListener(new MessageListenerAdapter(queueListener(), "listen"));
 		return container;
 	}

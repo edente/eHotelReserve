@@ -1,10 +1,13 @@
 package edu.miu.cs544.eHotelReserve.service.impl;
 
+import java.util.Arrays;
 import java.util.List;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -12,7 +15,7 @@ import org.springframework.web.client.RestTemplate;
 import edu.miu.cs544.eHotelReserve.RestHttpHeader;
 import edu.miu.cs544.eHotelReserve.amqpconfigJava.AmqpConfiguration;
 import edu.miu.cs544.eHotelReserve.model.Booking;
-
+import edu.miu.cs544.eHotelReserve.model.RoomType;
 import edu.miu.cs544.eHotelReserve.service.IBookingService;
 
 
@@ -22,8 +25,8 @@ public class BookingService implements IBookingService{
 	
 
 //	private IBookingRepository bookingRepository;
-	String baseUrl = "http://localhost:8000/MemberRest/bookings";
-	String baseUrlExtended = baseUrl + "/add";
+	String baseUrl = "http://localhost:8000/MemberRest";
+	String baseUrlExtended = baseUrl + "/bookings/add";
 
 	@Autowired
 	RestHttpHeader restHelper;
@@ -38,13 +41,13 @@ public class BookingService implements IBookingService{
 	}
 
 	@Override
-	public Booking save(Booking booking) {
-	
+	public Booking save(Booking booking) {	
 		RestTemplate restTemplate = restHelper.getRestTemplate();
-System.out.println(booking.getReferenceNumber());
-		HttpEntity<Booking> httpEntity = new HttpEntity<Booking>(booking, restHelper.getHttpHeaders());
-		System.out.println("It must be here ONE");
+		System.out.println("posting booking***********************");
+		HttpEntity httpEntity = new HttpEntity(booking, restHelper.getHttpHeaders());
+		System.out.println("after entity***********************");
 		restTemplate.postForObject(baseUrlExtended, httpEntity, Booking.class);
+		System.out.println("posted***********************");
 		return null;
 	}
 
@@ -59,10 +62,18 @@ System.out.println(booking.getReferenceNumber());
 
 	@Override
 	public String assignReferenceNumber() {
+		
+		RestTemplate restTemplate= restHelper.getRestTemplate();
+		HttpEntity httpEntity= new HttpEntity(restHelper.getHttpHeaders());
+		ResponseEntity<Booking[]> responseEntity=restTemplate.exchange(baseUrl, HttpMethod.GET, httpEntity, Booking[].class);
+		List<Booking> booking = Arrays.asList(responseEntity.getBody());
+
+ 		if (booking.size()==0) return "AA1";
+		Long currentId = booking.stream().mapToLong(Booking::getId).max().getAsLong();
+
 //		if(bookingRepository.findAll().stream().count() == 0) return "BN1";
 //		Long currentId = bookingRepository.findAll().stream().mapToLong(Booking::getId).max().getAsLong();
-//		return  "BN" + (currentId + 1) ;
-		return null;
+		return  "BN" + (currentId + 1) ;
 	}
 
 	@Override

@@ -32,41 +32,34 @@ import edu.miu.cs544.eHotelReserve.service.impl.BookingService;
 @RequestMapping("/hotel/admin/roomTypes")
 @Controller
 public class RoomTypeController {
-	
-	@Autowired
+
+    @Autowired
     private IRoomTypeService roomTypeService;
-	
-	@Autowired
-	BookingService bookingService;
-	
-	@GetMapping(value = "")
+
+    @Autowired
+    BookingService bookingService;
+
+    @GetMapping(value = "")
     public ModelAndView manageRoomTypes() {
-        
-		
-	     
-       ModelAndView modelAndView = new ModelAndView();
-       List<RoomType> roomTypes = roomTypeService.findAll();
-       modelAndView.addObject("roomTypes", roomTypes);
-       modelAndView.setViewName("admin/roomTypes/roomTypes");
-       return modelAndView;
+
+        ModelAndView modelAndView = new ModelAndView();
+        List<RoomType> roomTypes = roomTypeService.findAll();
+        modelAndView.addObject("roomTypes", roomTypes);
+        modelAndView.setViewName("admin/roomTypes/roomTypes");
+        return modelAndView;
 
     }
-	
-	
-	
-	
-	
-	@GetMapping(value = "/add")
+
+    @GetMapping(value = "/add")
     public String newCategoryForm(Model model) {
         model.addAttribute("roomType", new RoomType());
         return "admin/roomTypes/newroomTypesform";
     }
-	
-	@PostMapping(value = "/add/save")
-    public String addNewCategory(@Valid @ModelAttribute("roomType") RoomType roomType,
-        BindingResult bindingResult, Model model) {
-		System.out.println("==================================================");
-		System.out.println("roomytpe"+roomType.getRoomTypeName());
+
+    @PostMapping(value = "/add/save")
+    public String addNewCategory(@Valid @ModelAttribute("roomType") RoomType roomType, BindingResult bindingResult,
+            Model model) {
+        System.out.println("roomytpe" + roomType.getRoomTypeName());
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getAllErrors());
             return "admin/roomTypes/newroomTypesform";
@@ -74,21 +67,21 @@ public class RoomTypeController {
         roomType = roomTypeService.save(roomType);
         return "redirect:/hotel/admin/roomTypes";
     }
-	
-	@GetMapping(value = "/edit/{roomTypeId}")
+
+    @GetMapping(value = "/edit/{roomTypeId}")
     public String editCategoryForm(@PathVariable("roomTypeId") Long roomTypeId, Model model) {
-		RoomType roomType = roomTypeService.findById(roomTypeId);
+        RoomType roomType = roomTypeService.findById(roomTypeId);
         if (roomType != null) {
             model.addAttribute("roomType", roomType);
             return "admin/roomTypes/editroomTypesform";
         }
         return "admin/roomTypes/roomTypes";
     }
-	
-	@GetMapping(value="/delete/{roomTypeId}")
-	public String deleteCategory(@PathVariable("roomTypeId") Long id, Model model){		
-		roomTypeService.delete(id);
-		return "redirect:/hotel/admin/roomTypes";
-	}
+
+    @GetMapping(value = "/delete/{roomTypeId}")
+    public String deleteCategory(@PathVariable("roomTypeId") Long id, Model model) {
+        roomTypeService.delete(id);
+        return "redirect:/hotel/admin/roomTypes";
+    }
 
 }

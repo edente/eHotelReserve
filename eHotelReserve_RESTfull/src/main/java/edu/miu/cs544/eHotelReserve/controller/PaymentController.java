@@ -40,7 +40,7 @@ public class PaymentController {
 //    }
 	
 	
-	@PostMapping(value = "/save")
+	@PostMapping(value = "/payments/save")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
     public void addNewPayment(Payment payment) {
         paymentService.save(payment);
