@@ -21,6 +21,7 @@ public class RoomTypeController {
 	@GetMapping(value = {"roomTypes","roomTypes/all"})
     public List<RoomType> manageCategories() {
         return roomTypeService.getRoomTypeList();
+        
     }
 	
 //	@GetMapping(value = "/add")
@@ -31,7 +32,6 @@ public class RoomTypeController {
 	
 	@PostMapping(value = "roomTypes/save")
     public void addNewRoomType(@RequestBody RoomType roomType) {
-
      roomTypeService.saveRoomType(roomType);
         
     }

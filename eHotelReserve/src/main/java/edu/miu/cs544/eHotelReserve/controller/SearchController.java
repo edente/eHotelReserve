@@ -48,7 +48,7 @@ public class SearchController {
 		ModelAndView modelAndView = new ModelAndView();
 		System.out.println("============------------------========================");
         List<RoomType> availableRoomTypes = searchService.findAvailableRoomTypes(checkIn, checkOut);
-		System.out.println("============------------------========================"+availableRoomTypes.get(1).getPrice());
+		System.out.println("============------------------========================"+availableRoomTypes.get(1).getRoomTypeId());
         modelAndView.addObject("availableRoomTypes", availableRoomTypes);
         modelAndView.setViewName("public/search/results");
         temp.setStart(checkIn);

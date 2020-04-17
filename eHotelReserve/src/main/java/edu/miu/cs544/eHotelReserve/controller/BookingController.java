@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.miu.cs544.eHotelReserve.amqpconfigJava.AmqpConfiguration;
+import edu.miu.cs544.eHotelReserve.model.Address;
 import edu.miu.cs544.eHotelReserve.model.Booking;
 import edu.miu.cs544.eHotelReserve.model.Payment;
 import edu.miu.cs544.eHotelReserve.model.Room;
@@ -67,6 +68,7 @@ public class BookingController {
 
 	@RequestMapping(value = "/addnew", method = RequestMethod.GET)
 	public String newBookingForm(Model model) {
+
 		Booking newBooking = new Booking();
 		newBooking.setReferenceNumber(bookingService.assignReferenceNumber());
 		List<Room> rooms = roomService.findAll();
@@ -79,7 +81,7 @@ public class BookingController {
 		return "admin/bookings/bookingform";
 	}
 
-	@PostMapping(value = "/addnew/save")
+	@PostMapping(value = "/admin/addnew/save")
 	public String addNewBooking(@Valid @ModelAttribute("booking") Booking booking,
 								BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
@@ -118,49 +120,74 @@ public class BookingController {
 		return "redirect:/hotel/admin/bookings";
 	}
 
-	@GetMapping(value = "/hotel/public/bookings/addnew/{roomType}")
+	@GetMapping(value = "/addnew/{roomType}")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	public String newPublicBookingForm(Model model, @PathVariable("roomType") RoomType roomType) {
+
 		Booking newBooking = new Booking();
 		Payment newPayment = new Payment();
-		paymentService.save(newPayment);
+//		paymentService.save(newPayment);
 		LocalDate checkIn = searchController.getTemp().getStart();
 		LocalDate checkOut = searchController.getTemp().getEnd();
+		System.out.println("booking in data===: "+checkIn);
 		Long dateDifference = (Long)(ChronoUnit.DAYS.between(checkIn, checkOut));
 		Double unitPrice = roomType.getPrice();
+		
 		Double totalPrice = (double) (dateDifference*unitPrice);
 		newBooking.setTotalPrice(totalPrice);
 		newBooking.setCheckInDate(checkIn);
 		newBooking.setCheckOutDate(checkOut);
-		newBooking.setReferenceNumber(bookingService.assignReferenceNumber());
+//		newBooking.setReferenceNumber(bookingService.assignReferenceNumber());
+
+		newBooking.setReferenceNumber("AFDR56877");
 		newBooking.setBookingDate(LocalDate.now());
 		newBooking.setPayment(newPayment);
-		newBooking.setRoom(searchService.getAvailableRooms(checkIn, checkOut)
-				.stream()
-				.filter(v -> v.getRoomtype() == roomType)
-				.findFirst()
-				.orElse(null));
+		Room room=new Room( "400",roomType);
+		newBooking.setRoom(room);
+//		newBooking.setRoom(searchService.getAvailableRooms(checkIn, checkOut)
+//				.stream()
+//				.filter(v -> v.getRoomtype() == roomType)
+//				.findFirst()
+//				.orElse(null));
+		
 		model.addAttribute("booking", newBooking);
 		return "public/book/bookingform";
 	}
 
-	@PostMapping(value = "/hotel/public/bookings/addnew/save")
+	@PostMapping(value = "/addnew/save")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	public String addNewBookingPublic(@Valid @ModelAttribute("booking") Booking booking,
 									  BindingResult bindingResult, Model model) {
-		if(bindingResult.hasErrors()) {
-			model.addAttribute("errors", bindingResult.getAllErrors());
-			return "public/book/bookingform";
-		}
-		booking = bookingService.save(booking);
 
-		bookingService.publish(booking, context);
+//		if(bindingResult.hasErrors()) {
+//			model.addAttribute("errors", bindingResult.getAllErrors());
+//			return "public/book/bookingform";
+//		}
+		
+//		booking = bookingService.save(booking);
+		
+		//sample booking
+	    Address address1= new Address("111","sanfransico","tx","1234");
 
-		return "redirect:/hotel/public/bookings/success";
+	    User user1= new User("selam","Gd",address1,"sel","1234","ruftaea@gmail.com");
+	    RoomType roomType1= new RoomType("11","master",100.00,null);
+	    Room room1= new Room("11",roomType1);
+	    Payment payment1= new Payment(user1,null,"card",12341234L,345,100.00,"paid");
+
+	    Booking newBooking= new Booking(1L,"11",null,null,null,200.00,"SanFrancisco",user1,room1,payment1);
+		
+		//end sample
+			
+			bookingService.publish(newBooking, context);
+			System.out.println("After publish ***********");
+			
+//		return "redirect:/hotel/public/bookings/success";
+		return "public/book/confirmation";
 	}
 
 	@GetMapping(value = "/hotel/public/bookings/success")
 	public String homePage() {
+		System.out.println("F I N A L L Y");
 		return "public/book/confirmation";
 	}
 

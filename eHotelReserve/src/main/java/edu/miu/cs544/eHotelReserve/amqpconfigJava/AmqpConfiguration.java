@@ -11,6 +11,7 @@ import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
@@ -19,8 +20,8 @@ public class AmqpConfiguration {
 	    @Bean
 	    public ConnectionFactory connectionFactory() {
 	    	CachingConnectionFactory connectionFactory = new CachingConnectionFactory("localhost");
-	    	connectionFactory.setUsername("guest");
-	    	connectionFactory.setPassword("guest");
+	    	connectionFactory.setUsername("joe");
+	    	connectionFactory.setPassword("joe");
 	        return connectionFactory;
 	    }
 	    

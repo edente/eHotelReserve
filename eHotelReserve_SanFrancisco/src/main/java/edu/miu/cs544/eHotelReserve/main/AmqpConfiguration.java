@@ -5,6 +5,10 @@ import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
+import org.springframework.amqp.support.converter.ClassMapper;
+import org.springframework.amqp.support.converter.DefaultClassMapper;
+import org.springframework.amqp.support.converter.JsonMessageConverter;
+import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -23,8 +27,8 @@ public class AmqpConfiguration {
 	@Bean
 	public ConnectionFactory connectionFactory() {
 		CachingConnectionFactory connectionFactory = new CachingConnectionFactory("localhost");
-		connectionFactory.setUsername("guest");
-		connectionFactory.setPassword("guest");
+		connectionFactory.setUsername("joe");
+		connectionFactory.setPassword("joe");
 		return connectionFactory;
 	}
 //	 @Bean
@@ -35,7 +39,7 @@ public class AmqpConfiguration {
 	public SimpleMessageListenerContainer directListenerContainer() {
 		SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
 		container.setConnectionFactory(connectionFactory());
-		container.setQueueNames("orderOnlineQueue");//bookingQueueSanFrancisco
+		container.setQueueNames("bookingQueueSanFrancisco");//bookingQueueSanFrancisco
 		container.setMessageListener(new MessageListenerAdapter(queueListener(), "listen"));
 		return container;
 	}
@@ -66,6 +70,5 @@ public class AmqpConfiguration {
 //	        adapter.setOutputChannel(channel);
 //	        return adapter;
 //	    }
-
-
+	
 }

@@ -12,7 +12,6 @@ import org.springframework.web.client.RestTemplate;
 import edu.miu.cs544.eHotelReserve.RestHttpHeader;
 import edu.miu.cs544.eHotelReserve.model.RoomType;
 import edu.miu.cs544.eHotelReserve.repository.IRoomTypeRepository;
-
 import edu.miu.cs544.eHotelReserve.service.IRoomTypeService;
 
 @Component("roomTypeService")
@@ -23,7 +22,7 @@ public class RoomTypeService implements IRoomTypeService{
 	String baseUrl = "http://localhost:8000/MemberRest/roomTypes";
 	String baseUrlExtended = baseUrl + "/save";
 	@Autowired
-	RestHttpHeader restHelper;
+	edu.miu.cs544.eHotelReserve.RestHttpHeader restHelper;
 	
 //	
 //	@Autowired

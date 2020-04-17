@@ -30,26 +30,26 @@ public class Booking implements Serializable {
 	private Long id;
 
 	// private String bookingID;
-    @NotEmpty
+//    @NotEmpty
 	@Column(name = "reference_number")
 	private String referenceNumber;
 
 	@Column(name = "booking_date")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@NotNull
+//	@NotNull
 	private LocalDate bookingDate;
 
-	@NotNull
+//	@NotNull
 	@DateTimeFormat(pattern = "MM-dd-yyyy")
 	private LocalDate checkInDate;
 
-	@NotNull
+//	@NotNull
 	@DateTimeFormat(pattern = "MM-dd-yyyy")
 	private LocalDate checkOutDate;
 
 	@Column(name = "total_price")
 	private Double totalPrice;
-	@NotEmpty
+//	@NotEmpty
 	@Column(name = "hotel_reserve_location")
 	private String hotelReserveLocation;
 
@@ -61,7 +61,6 @@ public class Booking implements Serializable {
 		this.hotelReserveLocation = hotelReserveLocation;
 	}
 
-	@Valid
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id")
 	private User user;
@@ -72,7 +71,6 @@ public class Booking implements Serializable {
 
 	@OneToOne
 	@JoinColumn(name = "payment_id")
-	@Valid
 	private Payment payment;
 
 	public Booking() {

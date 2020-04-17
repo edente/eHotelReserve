@@ -51,7 +51,12 @@ public class UserController {
 			return "user/users/newuserform";
 		}
 		System.out.println("come to save******");
-		 userService.save(user);
+		try {
+			 userService.save(user);
+		} catch (Exception e) {
+			System.out.println("error+++++++++++++"+e.toString());
+		}
+		
 		return "redirect:/hotel/user/users";
 	}
 

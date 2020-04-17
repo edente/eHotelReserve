@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
@@ -17,7 +18,7 @@ public class MemberRestBootApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MemberRestBootApplication.class, args);
-	}
+	} 
 
 	 @Bean
 	  public DozerBeanMapper dozerBean() {
@@ -43,11 +44,15 @@ public class MemberRestBootApplication {
 	    messageSource.setDefaultEncoding("UTF-8");
 	    return messageSource;
 	}
-	
 	@Bean
-	public LocalValidatorFactoryBean getValidator() {
-	    LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
-	    bean.setValidationMessageSource(messageSource());
-	    return bean;
+	public MessageSourceAccessor getMessageSourceAccessor() {
+	  return new MessageSourceAccessor(messageSource());
 	}
+	
+//	@Bean
+//	public LocalValidatorFactoryBean getValidator() {
+//	    LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
+//	    bean.setValidationMessageSource(messageSource());
+//	    return bean;
+//	}
 }

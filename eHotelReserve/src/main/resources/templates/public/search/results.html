@@ -32,9 +32,9 @@
 						</div>
 					</td>
  					<td th:text="${category.price}"></td>
- 
+ 		<td th:text="${category.roomTypeId}"></td>
 					<td>
-						<a th:href="@{'/company/public/bookings/addnew/' + ${category.roomTypeId}}" class="btn btn-outline-success">BOOK</a>
+						<a th:href="@{'/hotel/public/bookings/addnew/' + ${category.roomTypeId}}" class="btn btn-outline-success">BOOK</a>
 					</td>
 				</tr>
 			</tbody>

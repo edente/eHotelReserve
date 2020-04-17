@@ -1,5 +1,7 @@
 package edu.miu.cs544.eHotelReserve.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,8 +11,9 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity(name="addresses")
-public class Address {
-	
+public class Address implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -32,7 +35,7 @@ public class Address {
 
     public Address() {}
 
-	public Address(String street, String city, String state, String zip, String email, String phone) {
+	public Address(String street, String city, String state, String zip) {
 		this.street = street;
 		this.city = city;
 		this.state = state;
