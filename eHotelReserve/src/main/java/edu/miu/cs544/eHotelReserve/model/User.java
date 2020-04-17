@@ -1,5 +1,6 @@
 package edu.miu.cs544.eHotelReserve.model;
 
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -15,13 +16,18 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.Valid;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "users")
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="userId")
 public class User implements Serializable {
+
+
 
 	/**
 	 * 
@@ -42,6 +48,7 @@ public class User implements Serializable {
 
 	@Column(name = "email")
 	@NotEmpty(message = "{NotEmpty}")
+	@Email(message="{Email.validation}")
 	private String email;
 
 	@Valid

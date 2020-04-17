@@ -9,16 +9,15 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import edu.miu.cs544.eHotelReserve.RestHttpHeader;
 import edu.miu.cs544.eHotelReserve.model.User;
-import edu.miu.cs544.eHotelReserve.repository.IUserRepository;
 import edu.miu.cs544.eHotelReserve.service.IUserService;
+import edu.miu.cs544.eHotelReserve.validation.ServiceValidation;
 
 @Service("userService")
-@Transactional
+//@Transactional
 public class UserService implements IUserService {
 
 	@Autowired
@@ -37,7 +36,7 @@ public class UserService implements IUserService {
 		List<User> userList = Arrays.asList(responseEntity.getBody());
 		return userList;
 	}
-
+	 @ServiceValidation
 	public void save(User user) {
 		RestTemplate restTemplate = restHelper.getRestTemplate();
 		HttpEntity<User> httpEntity = new HttpEntity<User>(user, restHelper.getHttpHeaders());

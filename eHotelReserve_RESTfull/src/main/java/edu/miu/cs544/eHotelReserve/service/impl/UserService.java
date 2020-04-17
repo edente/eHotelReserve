@@ -2,8 +2,6 @@ package edu.miu.cs544.eHotelReserve.service.impl;
 
 import java.util.List;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,7 +10,6 @@ import edu.miu.cs544.eHotelReserve.dao.IUserDao;
 import edu.miu.cs544.eHotelReserve.model.User;
 import edu.miu.cs544.eHotelReserve.service.ICredentialService;
 import edu.miu.cs544.eHotelReserve.service.IUserService;
-import edu.miu.cs544.eHotelReserve.validation.ServiceValidation;
 
 
 @Service("userService")
@@ -35,7 +32,7 @@ public class UserService implements IUserService{
 	public List<User> findAll() {
 		return userDao.findAll();
 	}
-@ServiceValidation
+  // @ServiceValidation
 	@Override
 	public void save(User user) {
 		//credentialsService.save(user.getUserCredentials());

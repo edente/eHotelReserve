@@ -1,6 +1,5 @@
 Manifest-Version: 1.0
-Built-By: Selam Ghide
-Build-Jdk: 10.0.2
+Built-By: bsur9
 Class-Path: dependency/spring-context-4.0.2.RELEASE.jar dependency/spr
  ing-aop-4.0.2.RELEASE.jar dependency/aopalliance-1.0.jar dependency/s
  pring-beans-4.0.2.RELEASE.jar dependency/spring-core-4.0.2.RELEASE.ja
@@ -15,6 +14,7 @@ Class-Path: dependency/spring-context-4.0.2.RELEASE.jar dependency/spr
   dependency/mail-1.4.jar dependency/activation-1.1.jar dependency/jav
  ax.persistence-api-2.2.jar dependency/annotations-17.0.0.jar dependen
  cy/validation-api-2.0.1.Final.jar
-Main-Class: edu.mum.AmqpSample
+Build-Jdk: 1.8.0_221
 Created-By: Maven Integration for Eclipse
+Main-Class: edu.mum.AmqpSample
 

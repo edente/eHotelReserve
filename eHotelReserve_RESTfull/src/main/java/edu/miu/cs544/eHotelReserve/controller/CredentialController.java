@@ -31,13 +31,13 @@ public class CredentialController {
  
 	}
 	
-	@PostMapping(value = "/add/save")
-	@ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void addNewUserCredential(@RequestBody UserCredential userCredential) {
-		credentialsService.save(userCredential);
-        System.out.println("----i am the userredentila in save method----"+ userCredential);
-
-    }
+//	@PostMapping(value = "/add/save")
+//	@ResponseStatus(value = HttpStatus.NO_CONTENT)
+//    public void addNewUserCredential(@RequestBody UserCredential userCredential) {
+//		credentialsService.save(userCredential);
+//        System.out.println("----i am the userredentila in save method----"+ userCredential);
+//
+//    }
  	
  	@RequestMapping("/{id}")
 	public UserCredential findOne(@PathVariable("id") String userName ) {

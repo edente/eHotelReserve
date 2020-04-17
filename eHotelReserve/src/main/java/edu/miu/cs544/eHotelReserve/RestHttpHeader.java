@@ -2,6 +2,7 @@ package edu.miu.cs544.eHotelReserve;
 
 import java.util.Collections;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -11,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Component
 public class RestHttpHeader {
+
 	protected RestTemplate restTemplate;
 
 	public RestHttpHeader() {

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import edu.miu.cs544.eHotelReserve.model.User;
 import edu.miu.cs544.eHotelReserve.service.IUserService;
 
@@ -23,12 +25,14 @@ import edu.miu.cs544.eHotelReserve.service.IUserService;
 public class UserController {
 
 	private IUserService userService;
+	private ObjectMapper oM;
 
 	
      @Autowired
 	public UserController(IUserService userService, MappingJackson2HttpMessageConverter springMvcJacksonConverter,
 			DozerBeanMapper dozerBeanMapper) {
 		this.userService = userService;
+		oM= springMvcJacksonConverter.getObjectMapper();
 	
 
 	}
