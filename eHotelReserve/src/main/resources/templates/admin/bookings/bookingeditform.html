@@ -50,10 +50,10 @@
 			            </div>			                			    			         	
 			         	<div class="col-md-3">			         	
 			         		<div class="form-group">               
-								<label for="state">Vehicle</label>
+								<label for="state">Hotel</label>
 			                    <span th:if="${#fields.hasErrors('vehicle')}" th:errors="*{vehicle}" class="alert alert-danger"></span>
 			                    <select name="vehicle" id="vehicle" class="form-control" required="required">
-			                         	<option value="vehicleNumber">Select a Vehicle Number</option>
+			                         	<option value="vehicleNumber">Select a Hotel Number</option>
 			                           	<option th:each="vehicle : ${vehicles}" th:value="${vehicle.vehicleNumber}" th:text="${vehicle.vehicleNumber}"></option>
 			                    </select>              
 		                	</div>

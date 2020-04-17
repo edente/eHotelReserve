@@ -29,27 +29,27 @@ public class Booking implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	// private String bookingID;
-//    @NotEmpty
+   private String bookingID;
+   @NotEmpty
 	@Column(name = "reference_number")
 	private String referenceNumber;
 
 	@Column(name = "booking_date")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-//	@NotNull
+	@NotNull
 	private LocalDate bookingDate;
 
-//	@NotNull
+	@NotNull
 	@DateTimeFormat(pattern = "MM-dd-yyyy")
 	private LocalDate checkInDate;
 
-//	@NotNull
+	@NotNull
 	@DateTimeFormat(pattern = "MM-dd-yyyy")
 	private LocalDate checkOutDate;
 
 	@Column(name = "total_price")
 	private Double totalPrice;
-//	@NotEmpty
+	@NotEmpty
 	@Column(name = "hotel_reserve_location")
 	private String hotelReserveLocation;
 

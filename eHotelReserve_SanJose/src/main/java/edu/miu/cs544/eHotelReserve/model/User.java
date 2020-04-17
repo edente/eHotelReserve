@@ -1,5 +1,6 @@
 package edu.miu.cs544.eHotelReserve.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -20,8 +21,8 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="users")
-public class User {
-	
+public class User implements Serializable {
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -39,7 +40,15 @@ public class User {
 	@NotEmpty(message = "{NotEmpty}")
     private String email;
     
-	@Valid
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+//	@Valid
     @OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="address_id") 
     private Address address;

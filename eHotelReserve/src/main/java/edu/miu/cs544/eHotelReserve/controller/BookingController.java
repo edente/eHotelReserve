@@ -174,7 +174,7 @@ public class BookingController {
 	    Room room1= new Room("11",roomType1);
 	    Payment payment1= new Payment(user1,null,"card",12341234L,345,100.00,"paid");
 
-	    Booking newBooking= new Booking(1L,"11",null,null,null,200.00,"SanFrancisco",user1,room1,payment1);
+	    Booking newBooking= new Booking(1L,"11",null,null,null,200.00,"SanJose",user1,room1,payment1);
 		
 		//end sample
 			

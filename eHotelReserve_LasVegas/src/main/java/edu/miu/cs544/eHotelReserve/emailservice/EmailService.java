@@ -26,9 +26,9 @@ public class EmailService {
 	@Autowired
 	private SpringTemplateEngine springTemplateEngine;
 	
-	//final String recipientEmail,
+	
 	public void sendBookingConfirmationMail(
-			final String recipientName,Booking booking, String documentName, final Locale locale)
+			final String recipientName,final String recipientEmail,Booking booking, String documentName, final Locale locale)
 			throws MessagingException {
 
 		// Prepare the Thymeleaf evaluation context

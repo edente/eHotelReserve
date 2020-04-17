@@ -43,7 +43,7 @@ public class RoomTypeController {
     public ModelAndView manageRoomTypes() {
         
 		
-	     
+	  
        ModelAndView modelAndView = new ModelAndView();
        List<RoomType> roomTypes = roomTypeService.findAll();
        modelAndView.addObject("roomTypes", roomTypes);

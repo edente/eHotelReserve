@@ -32,7 +32,7 @@ public class AmqpConfiguration {
 	public SimpleMessageListenerContainer directListenerContainer() {
 		SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
 		container.setConnectionFactory(connectionFactory());
-		container.setQueueNames("orderOnlineQueue");//bookingQueueLasVegas
+		container.setQueueNames("bookingQueueLasVegas");//
 		container.setMessageListener(new MessageListenerAdapter(queueListener(), "listen"));
 		return container;
 	}
