@@ -15,10 +15,15 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "roomTypes")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, 
+//property = "@id")
 public class RoomType {
 	
 	@Id
@@ -41,6 +46,7 @@ public class RoomType {
 	private Double price;
 //	 @JsonManagedReference()
 	 @JsonBackReference()
+//	@JsonIgnoreProperties(value="roomType")
 	@OneToMany(mappedBy = "roomType", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Room> rooms;
 	

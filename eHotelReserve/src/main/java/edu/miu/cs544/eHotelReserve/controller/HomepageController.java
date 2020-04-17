@@ -21,9 +21,9 @@ public class HomepageController {
 		return "public/home/contact";
 	}
 	
-	@GetMapping(value = "/hotel/services")
-	public String servicesPage() {
-		return "public/home/services";
-	}
+//	@GetMapping(value = "/hotel/services")
+//	public String servicesPage() {
+//		return "public/home/services";
+//	}
 	
 }
