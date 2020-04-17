@@ -41,9 +41,7 @@ public class RoomTypeController {
 	
 	@GetMapping(value = "")
     public ModelAndView manageRoomTypes() {
-        
-		
-	     
+       
        ModelAndView modelAndView = new ModelAndView();
        List<RoomType> roomTypes = roomTypeService.findAll();
        modelAndView.addObject("roomTypes", roomTypes);
@@ -65,7 +63,6 @@ public class RoomTypeController {
 	@PostMapping(value = "/add/save")
     public String addNewCategory(@Valid @ModelAttribute("roomType") RoomType roomType,
         BindingResult bindingResult, Model model) {
-		System.out.println("==================================================");
 		System.out.println("roomytpe"+roomType.getRoomTypeName());
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getAllErrors());

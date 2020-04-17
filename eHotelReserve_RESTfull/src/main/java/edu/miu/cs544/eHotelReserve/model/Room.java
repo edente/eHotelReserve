@@ -18,12 +18,16 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 
 @Entity
 @Table(name = "rooms")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Room {
 	
 	@Id
@@ -41,6 +45,7 @@ public class Room {
 	@NotNull
 //	@JsonBackReference()
 	 @JsonManagedReference()
+//	@JsonIgnoreProperties(value="rooms")
     private RoomType roomType;
     
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)

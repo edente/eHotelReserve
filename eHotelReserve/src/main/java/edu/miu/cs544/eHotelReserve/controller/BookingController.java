@@ -137,18 +137,17 @@ public class BookingController {
 		newBooking.setTotalPrice(totalPrice);
 		newBooking.setCheckInDate(checkIn);
 		newBooking.setCheckOutDate(checkOut);
-//		newBooking.setReferenceNumber(bookingService.assignReferenceNumber());
+		newBooking.setReferenceNumber(bookingService.assignReferenceNumber());
 
-		newBooking.setReferenceNumber("AFDR56877");
 		newBooking.setBookingDate(LocalDate.now());
 		newBooking.setPayment(newPayment);
-		Room room=new Room( "400",roomType);
-		newBooking.setRoom(room);
-//		newBooking.setRoom(searchService.getAvailableRooms(checkIn, checkOut)
-//				.stream()
-//				.filter(v -> v.getRoomtype() == roomType)
-//				.findFirst()
-//				.orElse(null));
+//		Room room=new Room( "400",roomType);
+//		newBooking.setRoom(room);
+		newBooking.setRoom(searchService.getAvailableRooms(checkIn, checkOut)
+				.stream()
+				.filter(v -> v.getRoomtype() == roomType)
+				.findFirst()
+				.orElse(null));
 		
 		model.addAttribute("booking", newBooking);
 		return "public/book/bookingform";
@@ -159,29 +158,15 @@ public class BookingController {
 	public String addNewBookingPublic(@Valid @ModelAttribute("booking") Booking booking,
 									  BindingResult bindingResult, Model model) {
 
-//		if(bindingResult.hasErrors()) {
-//			model.addAttribute("errors", bindingResult.getAllErrors());
-//			return "public/book/bookingform";
-//		}
-		
-//		booking = bookingService.save(booking);
-		
-		//sample booking
-	    Address address1= new Address("111","sanfransico","tx","1234");
+		if(bindingResult.hasErrors()) {
+			model.addAttribute("errors", bindingResult.getAllErrors());
+			return "public/book/bookingform";
+		}
 
-	    User user1= new User("selam","Gd",address1,"sel","1234","ruftaea@gmail.com");
-	    RoomType roomType1= new RoomType("11","master",100.00,null);
-	    Room room1= new Room("11",roomType1);
-	    Payment payment1= new Payment(user1,null,"card",12341234L,345,100.00,"paid");
-
-	    Booking newBooking= new Booking(1L,"11",null,null,null,200.00,"SanFrancisco",user1,room1,payment1);
-		
-		//end sample
-			
-			bookingService.publish(newBooking, context);
+//	    booking = bookingService.save(booking);
+			bookingService.publish(booking, context);
 			System.out.println("After publish ***********");
-			
-//		return "redirect:/hotel/public/bookings/success";
+	
 		return "public/book/confirmation";
 	}
 

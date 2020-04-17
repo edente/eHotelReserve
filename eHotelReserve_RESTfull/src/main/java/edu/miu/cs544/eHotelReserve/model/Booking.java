@@ -23,33 +23,33 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity(name="bookings")
 public class Booking implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 2L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	// private String bookingID;
-//    @NotEmpty
+    @NotEmpty
 	@Column(name = "reference_number")
 	private String referenceNumber;
 
 	@Column(name = "booking_date")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-//	@NotNull
+	@NotNull
 	private LocalDate bookingDate;
 
-//	@NotNull
-	@DateTimeFormat(pattern = "MM-dd-yyyy")
+	@NotNull
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate checkInDate;
 
-//	@NotNull
-	@DateTimeFormat(pattern = "MM-dd-yyyy")
+	@NotNull
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate checkOutDate;
 
 	@Column(name = "total_price")
 	private Double totalPrice;
-//	@NotEmpty
+	@NotEmpty
 	@Column(name = "hotel_reserve_location")
 	private String hotelReserveLocation;
 

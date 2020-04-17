@@ -26,7 +26,7 @@ public class BookingController {
 		return bookingService.getBookingById(id);
 	}
 
-	@PostMapping("/bookings/add")
+	@PostMapping(value="/bookings/add")
 	public Booking createBooking(@RequestBody Booking booking) {
 		try {
 			System.out.println("It must be here!!!");
