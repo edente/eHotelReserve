@@ -14,7 +14,6 @@ import org.springframework.web.client.RestTemplate;
 import edu.miu.cs544.eHotelReserve.RestHttpHeader;
 import edu.miu.cs544.eHotelReserve.model.User;
 import edu.miu.cs544.eHotelReserve.service.IUserService;
-import edu.miu.cs544.eHotelReserve.validation.ServiceValidation;
 
 @Service("userService")
 //@Transactional
@@ -36,7 +35,7 @@ public class UserService implements IUserService {
 		List<User> userList = Arrays.asList(responseEntity.getBody());
 		return userList;
 	}
-	 @ServiceValidation
+	
 	public void save(User user) {
 		RestTemplate restTemplate = restHelper.getRestTemplate();
 		HttpEntity<User> httpEntity = new HttpEntity<User>(user, restHelper.getHttpHeaders());
