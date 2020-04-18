@@ -35,27 +35,26 @@ public class EmailService {
 		final Context thymeContext = new Context(locale);
 		thymeContext.setVariable("name", recipientName);
 		thymeContext.setVariable("booking", booking);
-
+		
 		// Prepare message using a Spring helper
 		final MimeMessage mimeMessage = this.mailSender.createMimeMessage();
 		final MimeMessageHelper message = new MimeMessageHelper(mimeMessage, true, "UTF-8");
-		message.setSubject("Reservation Details");
 
+		message.setSubject("Reservation Details");
+		
 		// could have CC, BCC, will also take an array of Strings
-		//message.setTo(recipientEmail);
+		message.setTo(recipientEmail);
 
 		// Create the HTML body using Thymeleaf..template is orderReceivedMail.html
 		final String htmlContent = this.springTemplateEngine.process("bookingReceivedMail", thymeContext);
 		message.setText(htmlContent, true /* isHtml */);
 
 		// Add attachment
-		String documentLocation = "templates/images/" + documentName;
-		message.addAttachment(documentName, new ClassPathResource(documentLocation));
-
+//		String documentLocation = "templates/images/" + documentName;
+//		message.addAttachment(documentName, new ClassPathResource(documentLocation));
 		// Send email
 		this.mailSender.send(mimeMessage);
-		
-		//System.out.println("\n-------- Confirmation Email Sent to " + booking.getEmail());
+		System.out.println("\n-------- Confirmation Email Sent to " + booking.getUser().getEmail());
 
 	}
 

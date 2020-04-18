@@ -6,21 +6,23 @@
 </head>
 <body>
 
-<div style="font-size:20px">Your Car Hotel Reservation Confirmation</div>
+<div style="font-size:20px">Your Hotel Reservation Confirmation</div>
 <p th:text="#{greeting(${name})}"/>
 <div>
-    <p>Thanks for booking with us.Your room is <span th:text="${booking.room}"></span>. This
+    <p>Thanks for booking with us.Your room is <span th:text="${booking.referenceNumber}"></span>. This
         e-mail confirms your Hotel reservation.</p>
     <p>Visit "<u>My Trips</u>" to add this reservation to your calendar</p>
     <p><b>See sign-in instruction below</b></p>
 </div>
 <div>
    <h2>Booking Information</h2>
-    <H5>Booking Reference number : <span th:text="${booking.bookingID}"></span></H5>
+    <H5>Booking Reference number : <span th:text="${booking.id}"></span></H5>
     <H5>Booking Date : <span th:text="${booking.checkInDate}"></span></H5>
-    <H5>Pickup Location : <span th:text="${booking.checkOutDate}"></span></H5>
-    <H5>Total Car rental estimate : <span th:text="${booking.Price}"></span> USD</H5>
+    <H5>Check out date: <span th:text="${booking.checkOutDate}"></span></H5>
+     <H5>location: <span th:text="${booking.hotelReserveLocation}"></span></H5>
+    <H5>Total Hotel reserve estimate : <span th:text="${booking.totalPrice}"></span> USD</H5>
 </div>
 <H4> Thank you!</H4>
 </body>
 </html>
+

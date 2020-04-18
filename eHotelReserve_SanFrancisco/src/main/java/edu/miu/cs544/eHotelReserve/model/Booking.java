@@ -19,11 +19,11 @@ import javax.validation.constraints.NotNull;
 
 
 import org.springframework.format.annotation.DateTimeFormat;
-
+ 
 @Entity(name="bookings")
 public class Booking implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 2L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

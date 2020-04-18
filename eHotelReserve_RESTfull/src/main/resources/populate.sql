@@ -12,6 +12,4 @@ INSERT INTO rufta.bookings(id,booking_date, check_in_date,check_out_date, hotel_
 INSERT INTO rufta.bookings(id,booking_date, check_in_date,check_out_date, hotel_reserve_location, reference_number, total_price,room_id) VALUES(2,'2020-2-2', '2020-4-4','2020-5-5','lasVegas','65',800,2);
 
 
-INSERT INTO users(user_id,first_name, last_name,email,username,address_id) VALUES (5,'bsrat','kidane','bsur@gamil.com', 'mihrekidane',1)
-INSERT INTO users(user_id,first_name, last_name,email,username,address_id) VALUES (6,'mihreteab','kidane','mihre@gamil.com', 'mihrekidane',2)
 
