@@ -17,7 +17,7 @@ import edu.miu.cs544.eHotelReserve.emailservice.EmailService;
 
 
 @Configuration
-@ComponentScan("edu.miu.cs544.eHotelReserve.main")
+@ComponentScan("edu.miu.cs544.eHotelReserve")
 public class AmqpConfiguration {
 
 	@Bean

@@ -47,12 +47,12 @@ public class User {
 	@Email(message="{Email.validation}")
     private String email;
     
-	@Valid
+//	@Valid
     @OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="address_id") 
     private Address address;
 	
-	@Valid
+//	@Valid
 	@OneToOne(fetch=FetchType.EAGER,  cascade = CascadeType.ALL) 
 	@JoinColumn(name="username") 
 	private UserCredential userCredentials;

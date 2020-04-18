@@ -12,10 +12,10 @@
   
 <!--  ****************  Order Online CONSUMER ************************* -->
  <rabbit:listener-container connection-factory="connectionFactory">
-	<rabbit:listener ref="queueListener" method="listen" queue-names="orderOnlineQueue" />
+	<rabbit:listener ref="queueListener" method="listen" queue-names="bookingOnlineQueue" />
 </rabbit:listener-container>
 
-<bean id="queueListener" class="edu.mum.amqp.DirectOnlineListener" />
+<bean id="queueListener" class="edu.miu.cs544.eHotelReserve.amqp.DirectBranchListener" />
 
 
 </beans>

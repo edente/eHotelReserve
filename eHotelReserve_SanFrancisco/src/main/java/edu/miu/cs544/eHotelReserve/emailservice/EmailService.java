@@ -16,9 +16,9 @@ import java.util.Locale;
 
 @Service("emailService")
 public class EmailService {
-	private static final String IM_THE_GUY = "templates/images/imtheguy.jpg";
-	private static final String JPG_MIME = "image/jpg";
-	private static final String DOCX_MIME = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+//	private static final String IM_THE_GUY = "templates/images/imtheguy.jpg";
+//	private static final String JPG_MIME = "image/jpg";
+//	private static final String DOCX_MIME = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
 
 	@Autowired
 	private JavaMailSender mailSender;
@@ -48,18 +48,18 @@ public class EmailService {
 		final String htmlContent = this.springTemplateEngine.process("bookingReceivedMail", thymeContext);
 		message.setText(htmlContent, true /* isHtml */);
 
-		// Add imtheguy.jpg
-		message.addInline("imtheguy", new ClassPathResource(IM_THE_GUY), JPG_MIME);
+//		 Add imtheguy.jpg
+//		message.addInline("imtheguy", new ClassPathResource(IM_THE_GUY), JPG_MIME);
 
 		// Add attachment
-		String documentLocation = "templates/images/" + documentName;
-		message.addAttachment(documentName, new ClassPathResource(documentLocation));
+//		String documentLocation = "templates/images/" + documentName;
+//		message.addAttachment(documentName, new ClassPathResource(documentLocation));
 
 		// Send email
 		this.mailSender.send(mimeMessage);
 
-		 System.out.println("\n-------- Confirmation Email Sent");
-//		 booking.getUser().getAddress().getEmail());
+		 System.out.println("\n-------- Confirmation Email Sent"+
+		 booking.getUser().getEmail());
 
 	}
 
