@@ -13,54 +13,52 @@ import org.springframework.web.client.RestTemplate;
 
 import edu.miu.cs544.eHotelReserve.RestHttpHeader;
 import edu.miu.cs544.eHotelReserve.model.User;
-import edu.miu.cs544.eHotelReserve.repository.IUserRepository;
 import edu.miu.cs544.eHotelReserve.service.IUserService;
-
-
-
+import edu.miu.cs544.eHotelReserve.validation.ServiceValidation;
 
 @Service("userService")
-public class UserService implements IUserService{
-	
+//@Transactional
+public class UserService implements IUserService {
+
 	@Autowired
 	RestHttpHeader restHelper;
 
-	String baseUrl = "http://localhost:8000/MemberRest/hotel/user/users";///hotel/user/users
+	String baseUrl = "http://localhost:8000/MemberRest/hotel/user/users";/// hotel/user/users
 	String baseUrlExtended = baseUrl + "/add/save";
 	String baseUrlExtended1 = baseUrl + "/edit/{userId}";
-	
-	
-public List<User> findAll() {
-		
+
+	public List<User> findAll() {
+
 		RestTemplate restTemplate = restHelper.getRestTemplate();
-		HttpEntity httpEntity = new HttpEntity(restHelper.getHttpHeaders());
-		ResponseEntity<User[]> responseEntity = restTemplate.exchange(baseUrl, HttpMethod.GET, httpEntity, User[].class);	
- 		List<User> userList = Arrays.asList(responseEntity.getBody());
+		HttpEntity<User> httpEntity = new HttpEntity<User>(restHelper.getHttpHeaders());
+		ResponseEntity<User[]> responseEntity = restTemplate.exchange(baseUrl, HttpMethod.GET, httpEntity,
+				User[].class);
+		List<User> userList = Arrays.asList(responseEntity.getBody());
 		return userList;
 	}
-
-	public User findById(Long index) {
-		RestTemplate restTemplate = restHelper.getRestTemplate();
-		HttpEntity httpEntity = new HttpEntity(restHelper.getHttpHeaders());
-		ResponseEntity<User> responseEntity = restTemplate.exchange(baseUrlExtended1 + index, HttpMethod.GET, httpEntity, User.class);	
-		User user = responseEntity.getBody();
- 		return user;
-	}
-
-	public void partialUpdate(Long index, Map patch) {
-		RestTemplate restTemplate = restHelper.getRestTemplate();
-		HttpEntity httpEntity = new HttpEntity<Map>(patch,restHelper.getHttpHeaders());
-		restTemplate.exchange(baseUrlExtended + index, HttpMethod.PATCH, httpEntity, Map.class);	
-
- 		return ;
-	}
-
+	 @ServiceValidation
 	public void save(User user) {
 		RestTemplate restTemplate = restHelper.getRestTemplate();
 		HttpEntity<User> httpEntity = new HttpEntity<User>(user, restHelper.getHttpHeaders());
 		user = restTemplate.postForObject(baseUrlExtended, httpEntity, User.class);
 		return;
 	}
-	
+
+	public User findById(Long index) {
+		RestTemplate restTemplate = restHelper.getRestTemplate();
+		HttpEntity httpEntity = new HttpEntity(restHelper.getHttpHeaders());
+		ResponseEntity<User> responseEntity = restTemplate.exchange(baseUrlExtended1 + index, HttpMethod.GET,
+				httpEntity, User.class);
+		User user = responseEntity.getBody();
+		return user;
+	}
+
+	public void partialUpdate(Long index, Map patch) {
+		RestTemplate restTemplate = restHelper.getRestTemplate();
+		HttpEntity httpEntity = new HttpEntity<Map>(patch, restHelper.getHttpHeaders());
+		restTemplate.exchange(baseUrlExtended + index, HttpMethod.PATCH, httpEntity, Map.class);
+
+		return;
+	}
 
 }
