@@ -25,10 +25,10 @@ public class DirectBranchListener {
 		 booking.getHotelReserveLocation() + " Branch Queue on Rabbitmq");
 		System.out.println("-------- Sending Confirmation Email to Customer to " + email + "\n");
 
-		ApplicationContext context = new ClassPathXmlApplicationContext("context/applicationContext.xml");
-
-		EmailService emailService = (EmailService) context.getBean("emailService");
-		emailService.sendBookingConfirmationMail(name, email,booking,documentName,new Locale("en"));
+//		ApplicationContext context = new ClassPathXmlApplicationContext("context/applicationContext.xml");
+//
+//		EmailService emailService = (EmailService) context.getBean("emailService");
+//		emailService.sendBookingConfirmationMail(name, email,booking,documentName,new Locale("en"));
 
 //	AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(edu.miu.cs544.eHotelReserve.main.AmqpConfiguration.class);
 //

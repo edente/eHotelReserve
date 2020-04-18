@@ -19,14 +19,14 @@ import edu.miu.cs544.eHotelReserve.emailservice.EmailService;
 
 
 @Configuration
-@ComponentScan("edu.miu.cs544.eHotelReserve.main")
+@ComponentScan("edu.miu.cs544.eHotelReserve")
 public class AmqpConfiguration {
 
 	@Bean
 	public ConnectionFactory connectionFactory() {
 		CachingConnectionFactory connectionFactory = new CachingConnectionFactory("localhost");
-		connectionFactory.setUsername("guest");
-		connectionFactory.setPassword("guest");
+		connectionFactory.setUsername("joe");
+		connectionFactory.setPassword("joe");
 		return connectionFactory;
 	}
 //	@Bean
