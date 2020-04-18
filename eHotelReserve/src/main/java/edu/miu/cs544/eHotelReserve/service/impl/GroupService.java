@@ -5,12 +5,14 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import edu.miu.cs544.eHotelReserve.model.Group;
 import edu.miu.cs544.eHotelReserve.repository.IGroupRepository;
 import edu.miu.cs544.eHotelReserve.service.IGroupService;
 
 @Service("groupService")
+@Transactional
 public class GroupService implements IGroupService{
 	
 	private IGroupRepository groupRepository;

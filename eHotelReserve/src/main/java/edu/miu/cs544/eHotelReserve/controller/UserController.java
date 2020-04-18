@@ -40,9 +40,7 @@ public class UserController {
 	@GetMapping(value = "/add")
     public String newUserForm(Model model) {
 		User user = new User();
-		Address address=user.getAddress();
         model.addAttribute("user", user);
-        model.addAttribute("address",address);
         return "user/users/newuserform";
     }
 

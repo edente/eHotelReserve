@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import edu.miu.cs544.eHotelReserve.model.Group;
+
 
 public interface IGenericDao<T> {
 	/**

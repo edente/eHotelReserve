@@ -8,22 +8,25 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import edu.miu.cs544.eHotelReserve.RestHttpHeader;
 import edu.miu.cs544.eHotelReserve.model.User;
 import edu.miu.cs544.eHotelReserve.model.UserCredential;
 import edu.miu.cs544.eHotelReserve.repository.IUserCredentialRepository;
+
 import edu.miu.cs544.eHotelReserve.service.IUserCredentialService;
 
 @Service("userCredentialService")
-public class UserCredentialService implements IUserCredentialService {
-
+@Transactional
+public class UserCredentialService implements IUserCredentialService{
+	
 	@Autowired
 	RestHttpHeader restHelper;
 
 	String baseUrl = "http://localhost:8000/MemberRest/userCredentials";
-	String baseUrlExtended = baseUrl + "/";
+	String baseUrlExtended = baseUrl + "/add/save";
 
 	private UserCredential userCredentials = new UserCredential();
 
@@ -47,12 +50,12 @@ public class UserCredentialService implements IUserCredentialService {
 
 	public void save(UserCredential userCredentials) {
 		RestTemplate restTemplate = restHelper.getRestTemplate();
-		HttpEntity<UserCredential> httpEntity = new HttpEntity<UserCredential>(userCredentials,
-				restHelper.getHttpHeaders());
-		userCredentials = restTemplate.postForObject(baseUrl, httpEntity, UserCredential.class);
+		HttpEntity<UserCredential> httpEntity = new HttpEntity<UserCredential>(userCredentials, restHelper.getHttpHeaders());
+		userCredentials = restTemplate.postForObject(baseUrlExtended, httpEntity, UserCredential.class);
 		return;
 	}
 
+	
 	@Override
 	public UserCredential findByUserName(String userName) {
 		RestTemplate restTemplate = restHelper.getRestTemplate();

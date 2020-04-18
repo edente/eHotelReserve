@@ -14,17 +14,24 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.Valid;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+
 @Entity
 @Table(name="users")
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
+
 public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long userId;
+   private Long userId;
 	
 	//private String userID;
 	
@@ -37,6 +44,7 @@ public class User {
 
 	@Column(name = "email")
 	@NotEmpty(message = "{NotEmpty}")
+	@Email(message="{Email.validation}")
     private String email;
     
 	@Valid
@@ -49,8 +57,7 @@ public class User {
 	@JoinColumn(name="username") 
 	private UserCredential userCredentials;
 	
-	@OneToMany(mappedBy="user",fetch=FetchType.EAGER,  cascade = CascadeType.ALL)
-	private List<Booking> booking;
+
 	
 
     public UserCredential getUserCredential() {
@@ -122,13 +129,7 @@ public class User {
 		this.userCredentials = userCredentials;
 	}
 
-	public List<Booking> getBooking() {
-		return booking;
-	}
 
-	public void setBooking(List<Booking> booking) {
-		this.booking = booking;
-	}
 
 	public Address getAddress() {
 		return address;
@@ -141,7 +142,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", address=" + address + ", userCredentials=" + userCredentials + ", booking=" + booking + "]";
+				+ ", address=" + address + ", userCredentials=" + userCredentials +  "]";
 	}
 
 	

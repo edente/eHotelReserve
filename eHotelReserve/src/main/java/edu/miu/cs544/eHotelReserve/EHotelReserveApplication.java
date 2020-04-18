@@ -6,10 +6,15 @@ import java.io.InputStreamReader;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
+import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
@@ -24,6 +29,8 @@ import edu.miu.cs544.eHotelReserve.service.impl.BookingService;
 
 //ll3333
 @SpringBootApplication
+
+//@EnableAutoConfiguration(exclude = { DataSourceAutoConfiguration.class,WebMvcAutoConfiguration.class })
 public class EHotelReserveApplication {
 
 	@Autowired
@@ -66,7 +73,14 @@ public class EHotelReserveApplication {
 //	     System.out.print("*************HIT RETURN send message to sanfrasisco*********************::   ");
 //
 //	}
+	
 	@Bean
+	public MessageSourceAccessor getMessageSourceAccessor() {
+	  return new MessageSourceAccessor(messageSource());
+	}
+	
+	@Bean
+	//@Primary
 	public MessageSource messageSource() {
 	    ReloadableResourceBundleMessageSource messageSource
 	      = new ReloadableResourceBundleMessageSource();
@@ -77,6 +91,7 @@ public class EHotelReserveApplication {
 	}
 	
 	@Bean
+	@Primary
 	public LocalValidatorFactoryBean getValidator() {
 	    LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
 	    bean.setValidationMessageSource(messageSource());
